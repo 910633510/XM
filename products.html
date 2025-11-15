@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>XM LLC | Products</title>
+    <link rel="stylesheet" href="assets/css/style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="products-page">
+    <header class="top-bar">
+      <div class="container">
+        <div class="logo">XM LLC</div>
+        <nav class="main-nav" aria-label="Primary">
+          <a href="index.html">Home</a>
+          <a href="#apps">Products</a>
+          <a href="mailto:hello@xm-llc.com">Contact</a>
+        </nav>
+        <a class="cta" href="mailto:hello@xm-llc.com">Talk to Sales</a>
+      </div>
+    </header>
+
+    <main>
+      <section class="products-hero">
+        <div class="container">
+          <p class="eyebrow">XM LLC</p>
+          <h1>Products for Compliance-Heavy Teams</h1>
+          <p>
+            Three lightweight copilots built for regulated missions. Review each
+            product below and click through for a focused overview plus its
+            privacy posture.
+          </p>
+        </div>
+      </section>
+
+      <section class="product-list" id="apps">
+        <div class="container">
+          <div class="product-grid">
+            <article class="product-card">
+              <div>
+                <h2>xVoice Clone</h2>
+                <p>
+                  Authorized synthetic voice for broadcast and training teams
+                  that cannot expose raw studio recordings.
+                </p>
+                <ul>
+                  <li>Customer-approved scripts only</li>
+                  <li>Isolated training workspaces</li>
+                  <li>48-hour purge commitment</li>
+                </ul>
+              </div>
+              <a class="link-btn" href="xvoice.html">View xVoice Clone</a>
+            </article>
+            <article class="product-card">
+              <div>
+                <h2>xStock Monitor</h2>
+                <p>
+                  Market surveillance automation that merges internal research
+                  with live exchange data without breaking SOX walls.
+                </p>
+                <ul>
+                  <li>Feed tokenization by default</li>
+                  <li>Role-aware alerts</li>
+                  <li>Daily privacy status email</li>
+                </ul>
+              </div>
+              <a class="link-btn" href="xstock.html">View xStock Monitor</a>
+            </article>
+            <article class="product-card">
+              <div>
+                <h2>xSimple VPN</h2>
+                <p>
+                  Zero-trust remote access with posture checks and short-lived
+                  certificates for sensitive field operations.
+                </p>
+                <ul>
+                  <li>Device posture gating</li>
+                  <li>Custom retention per region</li>
+                  <li>FedRAMP Moderate alignment</li>
+                </ul>
+              </div>
+              <a class="link-btn" href="xsimple.html">View xSimple VPN</a>
+            </article>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="simple-footer">
+      <div class="container">
+        <p>© <span id="year"></span> XM LLC · Milford, Connecticut</p>
+        <a href="mailto:hello@xm-llc.com">hello@xm-llc.com</a>
+      </div>
+    </footer>
+    <script>
+      document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
+  </body>
+</html>
