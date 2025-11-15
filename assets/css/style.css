@@ -32,6 +32,10 @@ body.privacy-page {
   background: white;
 }
 
+body.apps-page {
+  background: var(--light);
+}
+
 a {
   color: inherit;
   text-decoration: none;
@@ -139,7 +143,7 @@ a:focus {
   );
 }
 
-.privacy-hero .eyebrow {
+.eyebrow {
   text-transform: uppercase;
   letter-spacing: 0.2em;
   font-size: 0.85rem;
@@ -563,6 +567,164 @@ textarea {
 
 .footer-meta {
   color: rgba(255, 255, 255, 0.7);
+}
+
+.apps-hero {
+  padding: 4rem 0 4.5rem;
+  background: linear-gradient(
+    120deg,
+    rgba(58, 93, 255, 0.12),
+    rgba(0, 198, 184, 0.08)
+  );
+}
+
+.apps-hero .container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 2.5rem;
+  align-items: center;
+}
+
+.apps-hero h1 {
+  font-size: clamp(2.3rem, 4vw + 1rem, 3.4rem);
+  margin-bottom: 1rem;
+  color: var(--bg);
+}
+
+.apps-hero p {
+  font-size: 1.05rem;
+  color: #334155;
+  max-width: 540px;
+}
+
+.apps-overview-card {
+  background: white;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  padding: 2rem;
+  box-shadow: 0 12px 32px rgba(15, 23, 42, 0.08);
+}
+
+.apps-overview-card ul {
+  margin: 1rem 0 1.5rem;
+  padding-left: 1.2rem;
+  color: #334155;
+}
+
+.apps-overview-card li {
+  margin-bottom: 0.6rem;
+}
+
+.apps-overview-card .card-footer {
+  margin: 0;
+  font-size: 0.95rem;
+  color: #475569;
+}
+
+.apps-showcase {
+  padding: 4.5rem 0;
+  background: white;
+}
+
+.apps-showcase h2 {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.apps-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.8rem;
+}
+
+.app-card {
+  background: #fff;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  padding: 2rem;
+  box-shadow: 0 16px 36px rgba(15, 23, 42, 0.08);
+  display: grid;
+  gap: 0.9rem;
+}
+
+.app-card h3 {
+  margin: 0;
+  font-size: 1.35rem;
+}
+
+.app-card ul {
+  margin: 0.5rem 0 0;
+  padding-left: 1.2rem;
+  display: grid;
+  gap: 0.5rem;
+}
+
+.app-label {
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+.app-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.95rem;
+  color: #475569;
+}
+
+.link-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-weight: 600;
+  color: var(--primary);
+}
+
+.link-btn:hover,
+.link-btn:focus {
+  text-decoration: underline;
+}
+
+.apps-privacy {
+  padding: 4.5rem 0;
+  background: var(--bg);
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.apps-privacy h2 {
+  color: white;
+}
+
+.apps-privacy p {
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.apps-privacy .privacy-header {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 2.5rem;
+}
+
+.apps-privacy .privacy-grid {
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+}
+
+.apps-privacy .privacy-grid article {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.12);
+  color: white;
+}
+
+.apps-privacy .link-btn {
+  color: white;
 }
 
 @media (max-width: 720px) {
