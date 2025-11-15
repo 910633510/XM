@@ -312,6 +312,7 @@ a:focus {
 }
 
 .contact { 
+.contact {
   padding: 4.5rem 0;
   background: linear-gradient(135deg, rgba(58, 93, 255, 0.08), rgba(15, 23, 42, 0.08));
 }
