@@ -311,6 +311,7 @@ a:focus {
   box-shadow: 0 8px 18px rgba(15, 23, 42, 0.06);
 }
 
+.contact { 
 .contact {
   padding: 4.5rem 0;
   background: linear-gradient(135deg, rgba(58, 93, 255, 0.08), rgba(15, 23, 42, 0.08));
@@ -321,6 +322,62 @@ a:focus {
   margin-bottom: 2rem;
   color: #1f2937;
   font-size: 1.05rem;
+}
+
+.legal {
+  padding: 4.5rem 0;
+  background: #fff;
+}
+
+.legal h2 {
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+}
+
+.policy-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 2rem;
+}
+
+.policy {
+  background: #f8fafc;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  padding: 2rem;
+  display: grid;
+  gap: 1.2rem;
+  box-shadow: 0 10px 26px rgba(15, 23, 42, 0.08);
+}
+
+.policy h3 {
+  margin: 0;
+  font-size: 1.4rem;
+}
+
+.policy h4 {
+  margin: 0;
+  font-size: 1.05rem;
+  color: var(--bg);
+}
+
+.policy ul {
+  margin: 0;
+  padding-left: 1.2rem;
+  display: grid;
+  gap: 0.6rem;
+}
+
+.effective-date {
+  font-size: 0.95rem;
+  color: var(--muted);
+  margin: 0;
+}
+
+.privacy-contact {
+  margin-top: 2.5rem;
+  font-size: 0.95rem;
+  color: #334155;
 }
 
 .contact-wrapper {
