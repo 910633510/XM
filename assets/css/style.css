@@ -28,6 +28,10 @@ body {
   line-height: 1.6;
 }
 
+body.privacy-page {
+  background: white;
+}
+
 a {
   color: inherit;
   text-decoration: none;
@@ -124,6 +128,33 @@ a:focus {
   font-size: 1.05rem;
   color: #334155;
   max-width: 520px;
+}
+
+.privacy-hero {
+  padding: 4rem 0;
+  background: linear-gradient(
+    160deg,
+    rgba(58, 93, 255, 0.12),
+    rgba(0, 198, 184, 0.08)
+  );
+}
+
+.privacy-hero .eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  font-size: 0.85rem;
+  color: var(--muted);
+  margin: 0 0 0.75rem;
+}
+
+.privacy-hero h1 {
+  margin: 0 0 1rem;
+  font-size: clamp(2.4rem, 4vw + 1rem, 3.4rem);
+}
+
+.privacy-hero p {
+  max-width: 640px;
+  color: #0f172a;
 }
 
 .hero-actions {
@@ -348,6 +379,18 @@ a:focus {
   padding-left: 1.2rem;
   display: grid;
   gap: 0.75rem;
+}
+
+.privacy-link {
+  display: inline-flex;
+  margin-top: 1rem;
+  font-weight: 600;
+  color: var(--primary);
+}
+
+.privacy-link:hover,
+.privacy-link:focus {
+  text-decoration: underline;
 }
 
 .contact {

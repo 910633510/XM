@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>XM LLC | xVoice Clone Privacy Policy</title>
+    <link rel="stylesheet" href="assets/css/style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="privacy-page">
+    <header class="top-bar">
+      <div class="container">
+        <div class="logo">XM LLC</div>
+        <nav class="main-nav" aria-label="Primary">
+          <a href="index.html#solutions">Solutions</a>
+          <a href="index.html#platform">Platform</a>
+          <a href="index.html#about">About</a>
+          <a href="index.html#leadership">Leadership</a>
+          <a href="index.html#compliance">Compliance</a>
+          <a href="index.html#privacy">Privacy</a>
+          <a href="index.html#contact">Contact</a>
+        </nav>
+        <a class="cta" href="index.html#contact">Schedule a Consultation</a>
+      </div>
+    </header>
+
+    <main>
+      <section class="privacy-hero">
+        <div class="container">
+          <p class="eyebrow">Product Privacy Report</p>
+          <h1>xVoice Clone Privacy Policy</h1>
+          <p>
+            xVoice Clone converts authorized voice samples into secure,
+            policy-aware synthetic models. This document details the data
+            lifecycle practices that keep customer recordings and resulting
+            assets private throughout the engagement.
+          </p>
+          <div class="hero-actions">
+            <a class="btn primary" href="#policy">Jump to Policy</a>
+            <a class="btn secondary" href="index.html#privacy">Back to XM LLC</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="legal privacy-details" id="policy">
+        <div class="container">
+          <p class="effective-date">
+            Effective: March 15, 2024 · Next independent review: September 2024
+          </p>
+          <div class="policy-grid">
+            <article class="policy">
+              <h3>Data Collected</h3>
+              <ul>
+                <li>
+                  Customer provides scripted voice samples plus metadata about
+                  the authorized speaker and intended usage.
+                </li>
+                <li>
+                  Optional redaction dictionary captures terms that must never
+                  be reproduced in synthesized audio.
+                </li>
+                <li>
+                  No biometric identifiers beyond submitted recordings are
+                  collected or derived.
+                </li>
+              </ul>
+            </article>
+            <article class="policy">
+              <h3>Processing &amp; Storage</h3>
+              <ul>
+                <li>
+                  Samples are encrypted in transit (TLS 1.3) and at rest (AES-256
+                  with HSM-backed key rotation).
+                </li>
+                <li>
+                  Training workspaces are isolated per customer and monitored
+                  with continuous logging.
+                </li>
+                <li>
+                  Raw recordings are purged within 14 days of model delivery,
+                  and artifacts are versioned for audit traceability.
+                </li>
+              </ul>
+            </article>
+            <article class="policy">
+              <h3>Security &amp; Access</h3>
+              <ul>
+                <li>
+                  Access requires multi-factor authentication and is limited to
+                  personnel cleared for CJIS/HIPAA data scopes.
+                </li>
+                <li>
+                  Every playback, export, or model handoff event is logged
+                  centrally and reviewed weekly.
+                </li>
+                <li>
+                  Voice fingerprints rendered from synthetic models cannot be
+                  reverse engineered to raw audio due to differential privacy
+                  noise.
+                </li>
+              </ul>
+            </article>
+            <article class="policy">
+              <h3>Customer Controls</h3>
+              <ul>
+                <li>
+                  Customers approve script content, retention windows, and
+                  downstream distribution rights before work begins.
+                </li>
+                <li>
+                  Emergency purge requests honored within 48 hours across all
+                  storage tiers.
+                </li>
+                <li>
+                  Audit-ready reports delivered upon completion for internal
+                  compliance filing.
+                </li>
+              </ul>
+            </article>
+          </div>
+          <div class="privacy-contact">
+            <p>
+              Questions about this policy? Email
+              <a href="mailto:privacy@xm-llc.com">privacy@xm-llc.com</a> or call
+              (202) 555-0184 to reach the XM privacy office in Milford,
+              Connecticut.
+            </p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container">
+        <div>
+          <strong>XM LLC</strong>
+          <p>Applied AI for regulated organizations.</p>
+        </div>
+        <div class="footer-links">
+          <a href="index.html#privacy">Privacy Policy</a>
+          <a href="index.html#terms">Terms of Service</a>
+          <a href="mailto:hello@xm-llc.com">Support</a>
+        </div>
+        <div class="footer-meta">
+          <p>© <span id="year"></span> XM LLC. All rights reserved.</p>
+          <p>CAGE Code: 8XM12</p>
+        </div>
+      </div>
+    </footer>
+    <script>
+      document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
+  </body>
+</html>
