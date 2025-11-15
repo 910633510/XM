@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>XM LLC | xSimple VPN Privacy Policy</title>
+    <link rel="stylesheet" href="assets/css/style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="privacy-page">
+    <header class="top-bar">
+      <div class="container">
+        <div class="logo">XM LLC</div>
+        <nav class="main-nav" aria-label="Primary">
+          <a href="index.html#solutions">Solutions</a>
+          <a href="index.html#platform">Platform</a>
+          <a href="index.html#about">About</a>
+          <a href="index.html#leadership">Leadership</a>
+          <a href="index.html#compliance">Compliance</a>
+          <a href="index.html#privacy">Privacy</a>
+          <a href="index.html#contact">Contact</a>
+        </nav>
+        <a class="cta" href="index.html#contact">Schedule a Consultation</a>
+      </div>
+    </header>
+
+    <main>
+      <section class="privacy-hero">
+        <div class="container">
+          <p class="eyebrow">Product Privacy Report</p>
+          <h1>xSimple VPN Privacy Policy</h1>
+          <p>
+            xSimple VPN delivers hardened, policy-aware remote access for field
+            teams. The controls below outline how tunnel metadata, device
+            fingerprints, and user activity are governed to maintain privacy
+            across regulated environments.
+          </p>
+          <div class="hero-actions">
+            <a class="btn primary" href="#policy">Jump to Policy</a>
+            <a class="btn secondary" href="index.html#privacy">Back to XM LLC</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="legal privacy-details" id="policy">
+        <div class="container">
+          <p class="effective-date">
+            Effective: May 1, 2024 · Next independent review: November 2024
+          </p>
+          <div class="policy-grid">
+            <article class="policy">
+              <h3>Data Captured</h3>
+              <ul>
+                <li>
+                  Device posture signals (OS version, patch level, EDR status)
+                  necessary to enforce zero-trust rules.
+                </li>
+                <li>
+                  Session metadata: tunnel start/stop time, assigned gateway, and
+                  service tags. Payload content is never inspected.
+                </li>
+                <li>
+                  Optional location hints derived from gateway selection for
+                  latency optimization; precise GPS is never collected.
+                </li>
+              </ul>
+            </article>
+            <article class="policy">
+              <h3>Processing &amp; Retention</h3>
+              <ul>
+                <li>
+                  Metadata streams are encrypted (TLS 1.3) end to end and stored
+                  in customer-dedicated clusters.
+                </li>
+                <li>
+                  Session logs roll off after 90 days unless preserved for an
+                  active investigation approved by the customer.
+                </li>
+                <li>
+                  Device fingerprints are hashed with rotating salts to prevent
+                  cross-environment correlation.
+                </li>
+              </ul>
+            </article>
+            <article class="policy">
+              <h3>Security &amp; Access</h3>
+              <ul>
+                <li>
+                  Admin access requires hardware-backed MFA and is fully
+                  audited; support staff view redacted metadata only.
+                </li>
+                <li>
+                  Forward secrecy enforced through short-lived certificates;
+                  compromised keys cannot decrypt historical sessions.
+                </li>
+                <li>
+                  Continuous monitoring detects anomalous tunnel creation, with
+                  automated containment workflows.
+                </li>
+              </ul>
+            </article>
+            <article class="policy">
+              <h3>Customer Controls</h3>
+              <ul>
+                <li>
+                  Customers define retention policies, approved geographies, and
+                  escalation contacts inside the admin console.
+                </li>
+                <li>
+                  On-demand export packages include signed hashes for tamper
+                  evidence and SIEM ingestion.
+                </li>
+                <li>
+                  XM provides quarterly privacy attestations aligned to FedRAMP
+                  Moderate and CJIS expectations.
+                </li>
+              </ul>
+            </article>
+          </div>
+          <div class="privacy-contact">
+            <p>
+              Questions about this policy? Email
+              <a href="mailto:privacy@xm-llc.com">privacy@xm-llc.com</a> or call
+              (202) 555-0184 to reach the XM privacy office in Milford,
+              Connecticut.
+            </p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container">
+        <div>
+          <strong>XM LLC</strong>
+          <p>Applied AI for regulated organizations.</p>
+        </div>
+        <div class="footer-links">
+          <a href="index.html#privacy">Privacy Policy</a>
+          <a href="index.html#terms">Terms of Service</a>
+          <a href="mailto:hello@xm-llc.com">Support</a>
+        </div>
+        <div class="footer-meta">
+          <p>© <span id="year"></span> XM LLC. All rights reserved.</p>
+          <p>CAGE Code: 8XM12</p>
+        </div>
+      </div>
+    </footer>
+    <script>
+      document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
+  </body>
+</html>
