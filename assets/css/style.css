@@ -204,6 +204,7 @@ a:focus {
 .about h2,
 .leadership h2,
 .compliance h2,
+.privacy h2,
 .contact h2 {
   font-size: 2rem;
   margin-bottom: 1.5rem;
@@ -321,6 +322,32 @@ a:focus {
   padding: 1.75rem;
   background: white;
   box-shadow: 0 8px 18px rgba(15, 23, 42, 0.06);
+}
+
+.privacy {
+  padding: 4rem 0;
+  background: #fff;
+}
+
+.privacy-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.8rem;
+}
+
+.privacy-grid article {
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: #f8fafc;
+  padding: 1.75rem;
+  box-shadow: 0 8px 20px rgba(15, 23, 42, 0.08);
+}
+
+.privacy-grid ul {
+  margin: 1rem 0 0;
+  padding-left: 1.2rem;
+  display: grid;
+  gap: 0.75rem;
 }
 
 .contact {
