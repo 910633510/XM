@@ -236,6 +236,7 @@ a:focus {
 }
 
 .solutions h2,
+.products h2,
 .platform h2,
 .about h2,
 .leadership h2,
@@ -244,6 +245,10 @@ a:focus {
 .contact h2 {
   font-size: 2rem;
   margin-bottom: 1.5rem;
+}
+
+.products {
+  padding: 4rem 0;
 }
 
 .solution-grid {

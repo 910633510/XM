@@ -4,7 +4,7 @@ This repository contains the public-facing website for XM LLC, an applied AI sof
 
 ## Structure
 
-- `index.html` – Main marketing page for XM LLC.
+- `index.html` – Main marketing page for XM LLC, including privacy policies and terms of service content.
 - `assets/css/style.css` – Global styles and responsive layout rules for the site.
 
 ## Local Preview
