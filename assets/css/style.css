@@ -265,6 +265,10 @@ a:focus {
   box-shadow: 0 8px 20px rgba(15, 23, 42, 0.08);
 }
 
+.solution-grid .card-actions {
+  margin-top: 1rem;
+}
+
 .platform {
   padding: 4.5rem 0;
 }
