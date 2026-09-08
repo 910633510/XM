@@ -4,55 +4,61 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>AI Song Cover | XM LLC</title>
-    <link rel="stylesheet" href="assets/css/style.css" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
-      rel="stylesheet"
-    />
+    <meta name="description" content="Create AI song covers from a song file and a voice reference you choose." />
+    <link rel="canonical" href="https://www.xmaillc.com/ai-song-cover.html" />
+    <link rel="stylesheet" href="assets/css/marketing.css" />
   </head>
-  <body class="app-page">
-    <header class="app-header">
-      <div class="container">
-        <div class="app-breadcrumbs">
-          <a href="index.html">XM LLC</a>
-          <span>/</span>
-          <a href="products.html">Products</a>
-          <span>/</span>
-          <span>AI Song Cover</span>
-        </div>
-        <a class="link-btn" href="mailto:hello@xm-llc.com">Contact</a>
+  <body class="xm-surface">
+    <a class="xm-skip" href="#main">Skip to content</a>
+    <header class="xm-header">
+      <div class="xm-shell xm-header-inner">
+        <a class="xm-brand" href="index.html">XM LLC</a>
+        <nav class="xm-nav" aria-label="Main navigation">
+          <a href="index.html#products">Products</a>
+          <a href="index.html#about">About</a>
+          <a href="index.html#contact">Support</a>
+          <a href="ai-song-cover-privacy.html">Privacy</a>
+        </nav>
       </div>
     </header>
 
-    <main class="app-main">
-      <section class="app-hero">
-        <div class="container">
-          <h1>AI Song Cover</h1>
-          <p>
-            AI Song Cover is an iOS music studio app for creating short cover
-            previews from a song file and a user-provided voice reference.
-            Free users can render 30-second previews, while Pro subscribers can
-            render up to 5 minutes.
-          </p>
-          <ul class="app-points">
-            <li>Song and voice files are uploaded over HTTPS to cover.xmaillc.com.</li>
-            <li>Apple StoreKit handles subscription purchases and entitlement proof.</li>
-            <li>Uploaded job files and generated outputs are cleaned up after approximately 24 hours.</li>
-          </ul>
-          <div class="app-actions">
-            <a class="btn primary" href="ai-song-cover-privacy.html">Privacy Policy</a>
-            <a
-              class="btn secondary"
-              href="https://www.apple.com/legal/internet-services/itunes/dev/stdeula/"
-              rel="noopener"
-              >Terms of Use</a
-            >
-            <a class="btn secondary" href="products.html">Back to Products</a>
-          </div>
+    <main id="main">
+      <section class="xm-shell xm-detail-hero" aria-labelledby="product-title">
+        <p class="xm-eyebrow">iOS</p>
+        <h1 class="xm-detail-title" id="product-title">AI Song Cover</h1>
+        <p class="xm-lead">Create AI song covers from a song file and a voice reference you choose.</p>
+        <div class="xm-actions">
+          <a class="xm-button" href="ai-song-cover-privacy.html">Privacy Policy</a>
+          <a class="xm-text-link" href="mailto:hello@xm-llc.com">Email Support</a>
         </div>
       </section>
+
+      <section class="xm-shell xm-detail-body" aria-labelledby="features-title">
+        <h2 class="xm-section-title" id="features-title">What you can do</h2>
+        <div class="xm-feature-grid">
+          <article class="xm-feature">
+            <h3>Choose a song</h3>
+            <p>Import a song file as the starting point for your cover.</p>
+          </article>
+          <article class="xm-feature">
+            <h3>Add a voice reference</h3>
+            <p>Record or import the voice reference you want to use.</p>
+          </article>
+          <article class="xm-feature">
+            <h3>Create a cover</h3>
+            <p>Generate a short preview or a longer render with Pro.</p>
+          </article>
+        </div>
+        <p class="xm-support-note">Need help with the app? Email <a class="xm-text-link" href="mailto:hello@xm-llc.com">hello@xm-llc.com</a>.</p>
+        <p class="xm-support-note">Subscription terms: <a class="xm-text-link" href="https://www.apple.com/legal/internet-services/itunes/dev/stdeula/" rel="noopener">Apple Standard Terms of Use</a>.</p>
+      </section>
     </main>
+
+    <footer class="xm-footer">
+      <div class="xm-shell xm-footer-inner">
+        <p>&copy; 2026 XM LLC</p>
+        <a class="xm-text-link" href="index.html#products">All products</a>
+      </div>
+    </footer>
   </body>
 </html>

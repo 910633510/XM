@@ -4,47 +4,60 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>xStock Monitor | XM LLC</title>
-    <link rel="stylesheet" href="assets/css/style.css" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
-      rel="stylesheet"
-    />
+    <meta name="description" content="Follow the markets, organize your watchlist, and keep up with market alerts." />
+    <link rel="canonical" href="https://www.xmaillc.com/xstock.html" />
+    <link rel="stylesheet" href="assets/css/marketing.css" />
   </head>
-  <body class="app-page">
-    <header class="app-header">
-      <div class="container">
-        <div class="app-breadcrumbs">
-          <a href="index.html">XM LLC</a>
-          <span>/</span>
-          <a href="products.html">Products</a>
-          <span>/</span>
-          <span>xStock Monitor</span>
-        </div>
-        <a class="link-btn" href="mailto:hello@xm-llc.com">Contact</a>
+  <body class="xm-surface">
+    <a class="xm-skip" href="#main">Skip to content</a>
+    <header class="xm-header">
+      <div class="xm-shell xm-header-inner">
+        <a class="xm-brand" href="index.html">XM LLC</a>
+        <nav class="xm-nav" aria-label="Main navigation">
+          <a href="index.html#products">Products</a>
+          <a href="index.html#about">About</a>
+          <a href="index.html#contact">Support</a>
+          <a href="xstock-privacy.html">Privacy</a>
+        </nav>
       </div>
     </header>
 
-    <main class="app-main">
-      <section class="app-hero">
-        <div class="container">
-          <h1>xStock Monitor</h1>
-          <p>
-            Surveillance automation that correlates market feeds with internal
-            research while honoring SOX, SEC, and FINRA boundaries.
-          </p>
-          <ul class="app-points">
-            <li>Tokenized ingestion for every exchange and memo feed</li>
-            <li>Role-aware alert routing with entitlement checks</li>
-            <li>Immutable audit logs retained per customer policy</li>
-          </ul>
-          <div class="app-actions">
-            <a class="btn primary" href="xstock-privacy.html">Privacy Policy</a>
-            <a class="btn secondary" href="products.html">Back to Products</a>
-          </div>
+    <main id="main">
+      <section class="xm-shell xm-detail-hero" aria-labelledby="product-title">
+        <p class="xm-eyebrow">iOS</p>
+        <h1 class="xm-detail-title" id="product-title">xStock Monitor</h1>
+        <p class="xm-lead">Follow the markets, organize your watchlist, and keep up with market alerts.</p>
+        <div class="xm-actions">
+          <a class="xm-button" href="xstock-privacy.html">Privacy Policy</a>
+          <a class="xm-text-link" href="mailto:hello@xm-llc.com">Email Support</a>
         </div>
       </section>
+
+      <section class="xm-shell xm-detail-body" aria-labelledby="features-title">
+        <h2 class="xm-section-title" id="features-title">What you can do</h2>
+        <div class="xm-feature-grid">
+          <article class="xm-feature">
+            <h3>Monitor the markets</h3>
+            <p>Keep an overview of the market information you follow.</p>
+          </article>
+          <article class="xm-feature">
+            <h3>Build a watchlist</h3>
+            <p>Organize the stocks you want to monitor in one place.</p>
+          </article>
+          <article class="xm-feature">
+            <h3>Stay informed</h3>
+            <p>Follow alerts for the market activity that matters to you.</p>
+          </article>
+        </div>
+        <p class="xm-support-note">Need help with the app? Email <a class="xm-text-link" href="mailto:hello@xm-llc.com">hello@xm-llc.com</a>.</p>
+      </section>
     </main>
+
+    <footer class="xm-footer">
+      <div class="xm-shell xm-footer-inner">
+        <p>&copy; 2026 XM LLC</p>
+        <a class="xm-text-link" href="index.html#products">All products</a>
+      </div>
+    </footer>
   </body>
 </html>

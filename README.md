@@ -1,12 +1,25 @@
-# XM LLC Organization Website
+# XM LLC Website
 
-This repository contains the public-facing website for XM LLC, an applied AI software company that serves regulated organizations. The single-page site highlights XM's solutions, platform capabilities, leadership team, security posture, and contact details to satisfy requirements for corporate verification.
+A static English product website at https://www.xmaillc.com, hosted by GitHub Pages from the root of `main`. No build step or dependencies are required.
 
-## Structure
+The homepage contains the six-app collection, company and support details, and the original legal text inside native disclosures. `products.html` forwards existing visitors to the homepage collection. Each app has a focused detail page; Nine Grid Select has a privacy link only.
 
-- `index.html` – Main marketing page for XM LLC, including privacy policies and terms of service content.
-- `assets/css/style.css` – Global styles and responsive layout rules for the site.
+## Local preview
 
-## Local Preview
+```sh
+python3 -m http.server 8766 --bind 127.0.0.1
+```
 
-Open `index.html` in a modern web browser to preview the site. No build tools are required.
+Open http://127.0.0.1:8766. Marketing pages use `assets/css/marketing.css`; the homepage also retains the original stylesheet and font for its unchanged legal sections. `assets/js/marketing.js` opens legal disclosures for direct, repeated and history-based anchor navigation. With JavaScript disabled, disclosures remain manually operable.
+
+## Verify before publishing
+
+```sh
+python3 scripts/verify-site.py
+```
+
+The checker compares all 12 privacy documents, the original homepage privacy/terms blocks, shared styles and VPN download/update resources byte-for-byte against the approved baseline. It also checks local links, fragment targets, the product collection and marketing metadata. Browser verification should cover mobile/tablet/desktop layouts, keyboard navigation, legal deep links, back/forward navigation, and privacy screenshots.
+
+Privacy documents and `assets/css/style.css` are intentionally protected from this marketing redesign. Keep new marketing styles opt-in and out of the original legal content. The VPN page, release links, artwork and `xsimple-appcast.xml` also remain unchanged.
+
+Push reviewed and verified changes to `main` to publish through the existing GitHub Pages configuration. Verify the live homepage, old product address, privacy links, VPN downloads and update feed after deployment.

@@ -1,0 +1,137 @@
+/* Marketing styles are opt-in. Do not change the legacy privacy stylesheet. */
+.xm-surface {
+  color: #24352d;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+  font-synthesis: none;
+  line-height: 1.6;
+}
+body.xm-surface { margin: 0; background: #fff; }
+.xm-surface *, .xm-surface *::before, .xm-surface *::after { box-sizing: border-box; }
+.xm-surface h1, .xm-surface h2, .xm-surface h3, .xm-surface p { margin: 0; }
+.xm-surface a { color: inherit; text-decoration: none; }
+.xm-surface a:hover { text-decoration: underline; text-underline-offset: 5px; }
+.xm-surface a:focus-visible, .xm-legal-disclosure > summary:focus-visible {
+  outline: 3px solid #a34e25;
+  outline-offset: 5px;
+}
+.xm-shell { width: min(1120px, calc(100% - 64px)); margin-inline: auto; }
+.xm-header { position: sticky; top: 0; z-index: 20; background: #fff; border-bottom: 1px solid #e4e9e5; }
+.xm-header-inner { min-height: 80px; display: flex; align-items: center; justify-content: space-between; gap: 28px; }
+.xm-brand { display: inline-flex; align-items: center; gap: 10px; font-size: 17px; font-weight: 700; letter-spacing: .04em; white-space: nowrap; }
+.xm-brand::before { content: ""; display: block; width: 10px; height: 10px; background: #08735b; border-radius: 50%; }
+.xm-brand:hover { text-decoration: none !important; }
+.xm-nav { display: flex; flex-wrap: wrap; align-items: center; gap: 28px; font-size: 13px; font-weight: 500; }
+.xm-nav a { display: inline-flex; min-height: 44px; align-items: center; }
+.xm-skip { position: fixed; top: 12px; left: 16px; padding: 10px 18px; background: #fff; z-index: 50; transform: translateY(-180%); }
+.xm-skip:focus { transform: translateY(0); }
+.xm-hero { padding-block: 80px 84px; }
+.xm-eyebrow { color: #08735b; font-size: 11px; font-weight: 650; letter-spacing: .13em; text-transform: uppercase; }
+.xm-hero-layout { margin-top: 24px; display: grid; grid-template-columns: 1.45fr 1fr; gap: 60px; align-items: end; }
+.xm-hero h1 { font-size: clamp(42px, 4.9vw, 68px); line-height: 1.08; font-weight: 550; letter-spacing: -.045em; }
+.xm-hero h1 span { color: #08735b; }
+.xm-hero-intro { padding-bottom: 3px; }
+.xm-hero-intro > p { max-width: 340px; color: #647068; font-size: 17px; line-height: 1.7; }
+.xm-hero-intro .xm-text-link { margin-top: 19px; }
+.xm-text-link { display: inline-flex; align-items: center; gap: 10px; min-height: 44px; color: #07664f !important; font-size: 13px; font-weight: 600; }
+.xm-arrow { font-size: 18px; font-weight: 400; line-height: 1; }
+.xm-products { background: #f6f7f4; border-block: 1px solid #e4e9e5; padding-block: 60px 72px; }
+.xm-section-heading { display: flex; justify-content: space-between; align-items: baseline; gap: 24px; margin-bottom: 30px; }
+.xm-section-title { font-size: 30px; line-height: 1.25; font-weight: 550; letter-spacing: -.025em; }
+.xm-section-heading > p { color: #647068; font-size: 13px; }
+.xm-product-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
+.xm-product-card { min-width: 0; display: flex; flex-direction: column; padding: 28px; background: #fff; border: 1px solid #e0e5df; border-radius: 12px; }
+.xm-card-top { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-bottom: 26px; }
+.xm-product-icon { display: grid; place-items: center; flex: 0 0 44px; width: 44px; height: 44px; border-radius: 11px; background: #edf3ee; color: #28775e; }
+.xm-product-icon svg { display: block; width: 23px; height: 23px; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+.xm-product-icon img { display: block; width: 44px; height: 44px; border-radius: 11px; }
+.xm-product-icon--voice { background: #f0edf7; color: #796390; }
+.xm-product-icon--music { background: #fcf0e8; color: #ad6846; }
+.xm-product-icon--goal { background: #eef2e4; color: #727c44; }
+.xm-product-icon--learn { background: #edf3fa; color: #577fa6; }
+.xm-product-icon--stock { background: #f5eeee; color: #9a6e70; }
+.xm-platform { color: #68736b; font-size: 10px; font-weight: 550; letter-spacing: .08em; text-transform: uppercase; }
+.xm-product-card h3 { font-size: 20px; font-weight: 600; line-height: 1.3; letter-spacing: -.02em; }
+.xm-product-card > p { color: #647068; font-size: 14px; line-height: 1.7; margin-top: 12px; margin-bottom: 26px; }
+.xm-card-actions { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 6px 18px; padding-top: 14px; margin-top: auto; border-top: 1px solid #edf0eb; }
+.xm-card-privacy { display: inline-flex; align-items: center; min-height: 44px; color: #68736b !important; font-size: 12px; }
+.xm-about { padding-block: 76px; }
+.xm-about-grid { display: grid; grid-template-columns: 1fr 1.1fr; gap: 70px; }
+.xm-about .xm-section-title { margin-top: 15px; }
+.xm-about-copy > p { max-width: 520px; font-size: 16px; color: #647068; }
+.xm-about-copy > .xm-location { font-size: 12px; margin-top: 20px; }
+.xm-contact { border-top: 1px solid #e4e9e5; padding-block: 48px; }
+.xm-contact-grid { display: grid; grid-template-columns: 1fr 1.1fr; gap: 28px 70px; align-items: start; }
+.xm-contact .xm-section-title { font-size: 26px; }
+.xm-contact p { color: #647068; font-size: 14px; margin-top: 12px; }
+.xm-contact-email { display: inline-block; color: #08735b !important; font-size: clamp(19px, 2.5vw, 27px); line-height: 1.4; letter-spacing: -.02em; overflow-wrap: anywhere; }
+.xm-contact-details { display: flex; align-items: center; gap: 20px; flex-wrap: wrap; margin-top: 14px; font-size: 12px; color: #647068; }
+.xm-contact-details a { display: inline-flex; align-items: center; min-height: 44px; }
+.xm-legal-index { padding-block: 36px 26px; border-top: 1px solid #e4e9e5; }
+.xm-legal-index .xm-section-title { font-size: 19px; }
+.xm-policy-links { display: flex; flex-wrap: wrap; gap: 2px 22px; margin-top: 15px; font-size: 12px; color: #647068; }
+.xm-policy-links a { display: inline-flex; align-items: center; min-height: 36px; text-decoration: underline; text-underline-offset: 4px; }
+/* The original legal sections below these summaries retain their old styles. */
+.xm-legal-disclosure > summary { cursor: pointer; width: min(1120px, calc(100% - 64px)); margin-inline: auto; padding-block: 20px; border-top: 1px solid #e4e9e5; color: #24352d; font: 500 14px/1.6 -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif; }
+.xm-legal-disclosure > summary::marker { color: #08735b; }
+.xm-footer { padding-block: 28px; border-top: 1px solid #e4e9e5; margin-top: 24px; }
+.xm-footer-inner { display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+.xm-footer p { font-size: 11px; color: #647068; }
+.xm-footer nav { display: flex; flex-wrap: wrap; align-items: center; gap: 24px; font-size: 12px; color: #647068; }
+.xm-footer nav a { display: inline-flex; min-height: 44px; align-items: center; }
+.xm-anchor { display: block; height: 0; }
+.xm-surface [id], .xm-anchor { scroll-margin-top: 110px; }
+.xm-detail-hero { padding-block: 76px 64px; }
+.xm-detail-title { font-size: clamp(38px, 6vw, 64px); line-height: 1.12; font-weight: 550; letter-spacing: -.04em; margin-top: 20px !important; }
+.xm-lead { font-size: 19px; line-height: 1.7; max-width: 660px; color: #647068; margin-top: 24px !important; }
+.xm-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 18px 26px; margin-top: 32px; }
+.xm-button { display: inline-flex; align-items: center; justify-content: center; min-height: 48px; background: #08735b; color: #fff !important; padding: 12px 22px; border-radius: 6px; font-size: 14px; font-weight: 600; }
+.xm-button:hover { background: #065b48; text-decoration: none !important; }
+.xm-detail-body { padding-block: 48px 64px; border-top: 1px solid #e4e9e5; }
+.xm-feature-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 40px; margin-top: 30px; }
+.xm-feature { border-top: 1px solid #dce5dc; padding-top: 22px; min-width: 0; }
+.xm-feature h3 { font-size: 18px; font-weight: 600; }
+.xm-feature p { color: #647068; margin-top: 12px; font-size: 14px; }
+.xm-support-note { margin-top: 46px !important; font-size: 13px; color: #647068; }
+.xm-support-note a { text-decoration: underline; text-underline-offset: 3px; overflow-wrap: anywhere; }
+.xm-redirect { padding-block: 96px; }
+.xm-redirect p { margin-block: 20px; }
+@media (max-width: 950px) {
+  .xm-hero-layout { gap: 30px; grid-template-columns: 1.4fr 1fr; }
+  .xm-hero h1 { font-size: 51px; }
+  .xm-product-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .xm-about-grid, .xm-contact-grid { gap: 40px; }
+}
+@media (max-width: 650px) {
+  .xm-shell, .xm-legal-disclosure > summary { width: calc(100% - 40px); }
+  .xm-header-inner { min-height: 100px; flex-wrap: wrap; gap: 0; padding-block: 12px 8px; }
+  .xm-brand { font-size: 16px; }
+  .xm-nav { width: 100%; gap: 24px; font-size: 12px; }
+  .xm-nav a { min-height: 40px; }
+  .xm-hero { padding-block: 46px 48px; }
+  .xm-hero-layout { grid-template-columns: 1fr; gap: 26px; margin-top: 20px; }
+  .xm-hero h1 { font-size: clamp(39px, 9.7vw, 56px); }
+  .xm-hero-intro > p { max-width: 410px; font-size: 15px; }
+  .xm-hero-intro .xm-text-link { margin-top: 12px; }
+  .xm-products { padding-block: 38px 44px; }
+  .xm-section-heading { display: block; margin-bottom: 24px; }
+  .xm-section-heading > p { margin-top: 12px; }
+  .xm-section-title { font-size: 27px; }
+  .xm-product-grid { grid-template-columns: 1fr; gap: 14px; }
+  .xm-product-card { padding: 24px; }
+  .xm-card-top { margin-bottom: 20px; }
+  .xm-product-card > p { margin-bottom: 20px; }
+  .xm-about { padding-block: 46px; }
+  .xm-about-grid, .xm-contact-grid { grid-template-columns: 1fr; gap: 24px; }
+  .xm-about-copy > p { font-size: 15px; }
+  .xm-contact { padding-block: 36px; }
+  .xm-legal-index { padding-block: 28px 20px; }
+  .xm-policy-links { gap: 4px 20px; }
+  .xm-footer-inner { align-items: flex-start; flex-direction: column; gap: 8px; }
+  .xm-detail-hero { padding-block: 46px; }
+  .xm-lead { font-size: 17px; }
+  .xm-detail-body { padding-block: 36px 44px; }
+  .xm-feature-grid { grid-template-columns: 1fr; gap: 26px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .xm-surface { scroll-behavior: auto; }
+}
