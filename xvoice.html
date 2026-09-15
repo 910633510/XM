@@ -30,6 +30,16 @@
       </div>
     </header>
 
+    <div class="checkout-status" data-checkout-status hidden role="status" aria-live="polite">
+      <div class="shell checkout-status-inner">
+        <div>
+          <strong data-checkout-title></strong>
+          <span data-checkout-message></span>
+        </div>
+        <a href="#download">Back to downloads</a>
+      </div>
+    </div>
+
     <main id="main">
       <section class="voice-hero" aria-labelledby="hero-title">
         <div class="hero-glow hero-glow-one" aria-hidden="true"></div>
@@ -177,5 +187,25 @@
         <p>&copy; 2026 XM LLC (US)</p>
       </div>
     </footer>
+    <script>
+      (() => {
+        const state = new URLSearchParams(window.location.search).get("checkout");
+        if (state !== "success" && state !== "cancelled") return;
+
+        const banner = document.querySelector("[data-checkout-status]");
+        const title = banner.querySelector("[data-checkout-title]");
+        const message = banner.querySelector("[data-checkout-message]");
+        if (state === "success") {
+          banner.dataset.state = "success";
+          title.textContent = "Payment received.";
+          message.textContent = "Return to Xsimple Voice Studio and refresh your account to see the active plan.";
+        } else {
+          banner.dataset.state = "cancelled";
+          title.textContent = "Checkout cancelled.";
+          message.textContent = "No plan change was made. You can return to the app whenever you are ready.";
+        }
+        banner.hidden = false;
+      })();
+    </script>
   </body>
 </html>
