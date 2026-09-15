@@ -22,7 +22,7 @@ from urllib.parse import unquote, urlsplit
 
 DEFAULT_BASELINE = "1dd864751ecf185cd544a08c54cd607a830918cf"
 PRODUCTS = {
-    "xSimple VPN", "xVoice Clone", "AI Song Cover", "xsimple Life Goal",
+    "xSimple VPN", "Xsimple Voice Studio", "AI Song Cover", "xsimple Life Goal",
     "Landuo", "xStock Monitor",
 }
 MARKETING_PAGES = {
