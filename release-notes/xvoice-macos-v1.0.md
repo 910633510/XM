@@ -13,6 +13,6 @@ The first direct Mac release brings the Xsimple Voice Studio workspace to a larg
 - Requires macOS 15 or later.
 - Universal binary for Apple silicon and Intel Macs.
 - Signed by XM LLC with Developer ID and notarized by Apple.
-- SHA-256: `84a1f39a82c0ca703c48d024ab2fddfacd6b793309952a92f4f95f6cca1330ba`
+- SHA-256: `f403bf9aede4d288a2fa724c08563394c9cdc29b587c8c7781621a52b181f249`
 
 Sign in and web billing are being activated together with the account service. iPhone purchases continue to use Apple In-App Purchase.
