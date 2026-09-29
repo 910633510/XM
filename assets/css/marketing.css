@@ -107,6 +107,7 @@ body.xm-surface { margin: 0; background: #fff; }
   .xm-brand { font-size: 16px; }
   .xm-nav { width: 100%; gap: 24px; font-size: 12px; }
   .xm-nav a { min-height: 40px; }
+  .xm-nav--with-games { row-gap: 4px; }
   .xm-hero { padding-block: 46px 48px; }
   .xm-hero-layout { grid-template-columns: 1fr; gap: 26px; margin-top: 20px; }
   .xm-hero h1 { font-size: clamp(39px, 9.7vw, 56px); }

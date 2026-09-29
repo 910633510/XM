@@ -26,7 +26,7 @@ PRODUCTS = {
     "Landuo", "xStock Monitor",
 }
 MARKETING_PAGES = {
-    "index.html", "products.html", "xsimple.html", "xvoice.html",
+    "index.html", "products.html", "xsimple.html", "xvoice.html", "four-kingdoms.html",
     "ai-song-cover.html", "life-goal.html", "landuo.html", "xstock.html",
 }
 VOID_TAGS = {
