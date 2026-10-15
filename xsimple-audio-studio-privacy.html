@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Xsimple Audio Studio Privacy Policy | XM LLC</title>
+    <meta name="description" content="How Xsimple Audio Studio handles audio, lyrics, purchases, server processing, retention, and deletion requests." />
+    <link rel="stylesheet" href="assets/css/style.css" />
+    <style>
+      .studio-policy .container { max-width: 960px; }
+      .studio-policy .privacy-hero { padding: 3.5rem 0 2.5rem; }
+      .studio-policy .privacy-hero h1 { overflow-wrap: anywhere; }
+      .studio-policy .legal { padding: 2.5rem 0; }
+      .studio-policy .policy-grid { grid-template-columns: minmax(0, 1fr); gap: 1.25rem; }
+      .studio-policy .policy { min-width: 0; box-shadow: none; }
+      .studio-policy .policy h3 { margin-top: 0; }
+      .studio-policy .policy p, .studio-policy .policy li { line-height: 1.7; }
+      .studio-policy .policy p:last-child { margin-bottom: 0; }
+      .studio-policy a { overflow-wrap: anywhere; }
+      .studio-policy .language-links { display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 1.25rem; }
+      .studio-policy .policy-summary { border-left: 4px solid var(--primary); padding-left: 1rem; }
+      .studio-policy .section-heading { margin: 0 0 1.5rem; }
+      .studio-policy .top-bar .container { flex-wrap: wrap; gap: 1rem; }
+      @media (max-width: 600px) {
+        .studio-policy .privacy-hero { padding: 2.5rem 0 1.75rem; }
+        .studio-policy .privacy-hero h1 { font-size: 2rem; }
+        .studio-policy .policy { padding: 1.25rem; }
+      }
+    </style>
+  </head>
+  <body class="privacy-page studio-policy">
+    <!-- Release candidate prepared locally. Publication is a separate action. -->
+    <header class="top-bar">
+      <div class="container">
+        <a class="logo" href="index.html">XM LLC</a>
+        <nav class="main-nav" aria-label="Primary">
+          <a href="index.html">Products</a>
+          <a href="index.html#contact">Support</a>
+          <a href="https://www.apple.com/legal/internet-services/itunes/dev/stdeula/">Terms of Use</a>
+        </nav>
+      </div>
+    </header>
+    <main>
+      <section class="privacy-hero" aria-labelledby="policy-title">
+        <div class="container">
+          <p class="eyebrow">Product Privacy Policy</p>
+          <h1 id="policy-title">Xsimple Audio Studio</h1>
+          <p>Privacy Policy · 隐私政策</p>
+          <p>Last updated: October 14, 2026 · 更新日期：2026 年 10 月 14 日</p>
+          <nav class="language-links" aria-label="Policy language">
+            <a href="#english" lang="en">English</a>
+            <a href="#chinese" lang="zh-Hans">简体中文</a>
+          </nav>
+        </div>
+      </section>
+
+      <section class="legal privacy-details" id="english" lang="en" aria-labelledby="english-title">
+        <div class="container">
+          <h2 class="section-heading" id="english-title">Privacy Policy</h2>
+          <p class="policy-summary">XM LLC provides Xsimple Audio Studio. Audio generation uses our server services and requires an internet connection. You do not need an app account or your own Mac. Deleting a local creation does not delete its server copies.</p>
+          <div class="policy-grid">
+            <article class="policy">
+              <h3>1. Audio and text you choose to use</h3>
+              <p>When you tap Record, the app requests microphone permission to capture a reference voice. You can instead import a recording from Files. Saved reference voices and creations are kept on your device for reuse, playback and export.</p>
+              <ul>
+                <li><strong>Voice cloning and text-to-speech:</strong> the selected reference recording, text, language and synthesis settings are sent to our voice service to generate speech.</li>
+                <li><strong>Song covers:</strong> the imported song, selected reference voice and requested duration are sent to our cover service. Processing creates the cover and associated audio files, such as separated vocals and accompaniment.</li>
+                <li><strong>Rap:</strong> your lyrics, musical style, vocal language, tempo, duration, request identifier and generation seed are sent to our Rap service to generate vocals and music. Rap generation does not require a microphone recording.</li>
+              </ul>
+              <p>Please submit only voices, recordings, songs and lyrics you own or have permission to use. Avoid including personal or confidential information that is unnecessary for your request.</p>
+            </article>
+            <article class="policy">
+              <h3>2. Where generation happens</h3>
+              <p>The app's voice-generation, song-cover and Rap requests are processed by models running on servers operated by XM LLC. These generation flows use locally installed XTTS, HQ-SVC and ACE-Step models; they do not call third-party AI model APIs. “Locally installed” refers to our servers, not your iPhone.</p>
+              <p>The app uses HTTPS to communicate with services at <strong>api-voiceclone.xmaillc.com</strong> and <strong>cover.xmaillc.com</strong>. Our public gateway routes requests to the processing service. Server processing and network delivery are necessary to provide the requested generation.</p>
+              <p>This description of AI generation does not mean that all app-related activity stays within XM LLC. Apple provides App Store delivery, purchases and subscription systems. Links you choose to open, and destinations to which you export or share audio, operate under their own policies.</p>
+            </article>
+            <article class="policy">
+              <h3>3. Identifiers and operational records</h3>
+              <p>No app account sign-in is required. The app nevertheless uses identifiers to operate its features. It saves a random Rap installation credential in the iOS Keychain. The Rap server links each job to a hash of that credential so another installation cannot retrieve or cancel it. A reference session or job identifier associates submitted material with the requested work.</p>
+              <p>Services receive connection information, including the connecting IP address, and maintain job status, timestamps, errors and diagnostic records. The membership gateway uses short-lived, in-memory keyed hashes of IP addresses for request limits. Rap separately stores keyed IP hashes and installation hashes for rate limiting; old rate-limit rows are removed when later rate checks run.</p>
+              <p>These identifiers support job access, purchase handling, service operation and abuse prevention. Hashing an identifier does not make the associated content anonymous.</p>
+            </article>
+            <article class="policy">
+              <h3>4. Purchases and membership</h3>
+              <p>Apple handles payment through in-app purchase. The app does not ask for your payment-card or bank-account details. It uses StoreKit purchase information to manage monthly subscription benefits. Subscription state is checked on the device and by the membership service. The app creates a random purchase-association token, keeps it in the iOS Keychain, and supplies it to Apple when you subscribe.</p>
+              <p>When you request a membership feature, the app sends an Apple-signed subscription transaction to our membership service for verification. The service checks the signature, intended app and product, expiry and relevant revocation state. Its persistent revocation database stores the environment, transaction identifier, revocation-notification timestamp and reason. The membership verifier does not store the signed transaction itself.</p>
+              <p>Apple's services also participate in certificate and purchase verification. You can manage or cancel subscriptions in your Apple account settings. Deleting an app, a recording or a server job does not cancel a subscription or remove Apple's own purchase records.</p>
+            </article>
+            <article class="policy">
+              <h3>5. Storage and retention</h3>
+              <p><strong>On your device:</strong> the app saves reference voices, imported audio, pending requests, generated results and creation history for its features. You can remove saved local items in the app. Local copies that you export or share must be managed at the destination you chose.</p>
+              <p><strong>Voice references and Rap:</strong> voice-reference files retained by the speech service and Rap request/output folders currently have no automatic expiry. Rap folders can contain lyrics, style, generation settings, job metadata linked to the installation hash, generated WAV files and worker logs. These server records remain until removed by the operator; they are not automatically erased when you finish listening or delete a local creation.</p>
+              <p><strong>Song covers:</strong> the cover service periodically removes completed or failed job folders after its configured retention window. The default window is 24 hours after the job's last update, and the cleanup checks run every 30 minutes while the service is running. Queued or running jobs are not removed by that cleanup. Timing can be affected by service interruptions or cleanup errors, so this is not a guarantee of deletion exactly 24 hours after upload.</p>
+              <p><strong>Other records:</strong> the song-cover job cleanup does not establish deletion of operational logs, membership revocation records or any backups. The membership revocation database currently has no automatic expiry. Contact us about the retention or deletion of server records using the process below.</p>
+            </article>
+            <article class="policy">
+              <h3>6. Your choices and deletion requests</h3>
+              <ul>
+                <li>You choose which text and files to submit. You can stop making generation requests at any time.</li>
+                <li>You can deny or revoke microphone access in iOS Settings and use imported audio instead.</li>
+                <li>Deleting a voice sample or creation in the app removes that local item; it does not send a server-data deletion request.</li>
+                <li>Cancel job attempts to stop pending Rap work. It does not delete existing requests, audio or logs. Stop tracking clears the pending request from this app and may leave server generation running.</li>
+              </ul>
+              <p>To request deletion of server data or withdraw permission for further use of submitted material, contact XM LLC through <a href="https://www.xmaillc.com/#contact">our support contact page</a>. Identify Xsimple Audio Studio, the feature used, the approximate submission time, and a job identifier if available. We may need additional information to locate the relevant records and verify that you are authorized to request their deletion.</p>
+              <p>Do not send passwords, installation credentials, API keys or full signed purchase transactions in a support message. A local deletion, uninstall or cancelled job should not be treated as confirmation that server records have been erased.</p>
+            </article>
+            <article class="policy">
+              <h3>7. Contact and changes</h3>
+              <p>For questions about this policy, server records or your privacy choices, use <a href="https://www.xmaillc.com/#contact">XM LLC's support contact page</a> and name Xsimple Audio Studio. We will update this page when the app's data-handling practices change; the date at the top identifies the latest revision.</p>
+              <p><a href="https://www.apple.com/legal/internet-services/itunes/dev/stdeula/">Apple Standard End User License Agreement</a></p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="legal privacy-details" id="chinese" lang="zh-Hans" aria-labelledby="chinese-title">
+        <div class="container">
+          <h2 class="section-heading" id="chinese-title">隐私政策</h2>
+          <p class="policy-summary">Xsimple Audio Studio 由 XM LLC 提供。音频生成使用我们的服务器服务，需要联网。您无需注册 App 账号或自行配置 Mac。删除本地作品不会删除服务器上的副本。</p>
+          <div class="policy-grid">
+            <article class="policy">
+              <h3>1. 您选择使用的音频和文字</h3>
+              <p>点击录音时，App 会请求麦克风权限以录制参考声音。您也可以通过“文件”导入录音。保存的参考声音和作品保留在设备上，供重复使用、试听和导出。</p>
+              <ul>
+                <li><strong>声音克隆与文字转语音：</strong>选定的参考录音、文字、语言及合成设置会发送到我们的语音服务，用于生成语音。</li>
+                <li><strong>歌曲翻唱：</strong>导入的歌曲、选定的参考声音和请求时长会发送到翻唱服务。处理过程会生成翻唱及相关音频，例如分离的人声与伴奏。</li>
+                <li><strong>Rap：</strong>歌词、音乐风格、演唱语言、节奏、时长、请求编号和生成种子会发送到 Rap 服务，用于生成人声与音乐。Rap 生成不要求录制麦克风音频。</li>
+              </ul>
+              <p>请仅提交您拥有权利或已获授权的声音、录音、歌曲和歌词，避免提交生成任务不需要的个人或保密信息。</p>
+            </article>
+            <article class="policy">
+              <h3>2. 生成在哪里完成</h3>
+              <p>App 的语音生成、翻唱和 Rap 请求由 XM LLC 运营的服务器上的模型处理。这些生成流程使用安装在服务器上的 XTTS、HQ-SVC 和 ACE-Step 模型，不调用第三方 AI 模型 API。这里的“本地安装”指我们的服务器，并非您的 iPhone 本机。</p>
+              <p>App 使用 HTTPS 与 <strong>api-voiceclone.xmaillc.com</strong> 和 <strong>cover.xmaillc.com</strong> 的服务通信。公网网关将请求转发给处理服务。完成您请求的生成需要服务器处理和网络传输。</p>
+              <p>上述 AI 生成说明不代表 App 的所有相关活动都仅由 XM LLC 完成。Apple 提供 App Store 分发、购买和订阅系统。您主动打开的链接，以及导出或分享音频的目标服务，适用各自的政策。</p>
+            </article>
+            <article class="policy">
+              <h3>3. 标识符与运行记录</h3>
+              <p>无需 App 账号登录，但 App 仍会使用标识符来提供功能。App 在 iOS 钥匙串中保存随机 Rap 安装凭证。Rap 服务端以该凭证的哈希关联任务，防止其他安装实例获取或取消任务。参考声音会话编号或任务编号用于关联提交的素材和请求。</p>
+              <p>服务会接收包括连接 IP 地址在内的网络信息，并保存任务状态、时间戳、错误及诊断记录。会员网关使用短时保存在内存中的 IP 键控哈希执行请求限流。Rap 服务另外存储 IP 键控哈希及安装标识哈希用于限流，并在后续限流检查时移除过期记录。</p>
+              <p>这些标识符用于任务访问、购买处理、服务运行和防止滥用。对标识符进行哈希处理，并不代表相关内容已经匿名化。</p>
+            </article>
+            <article class="policy">
+              <h3>4. 购买与会员</h3>
+              <p>付款由 Apple 通过应用内购买处理。App 不要求您提供银行卡或银行账户信息。App 使用 StoreKit 购买信息管理月会员权益，并在设备上和会员服务端核验订阅状态。App 会生成随机购买关联标识，保存在 iOS 钥匙串中，并在订阅时提交给 Apple。</p>
+              <p>请求会员功能时，App 会将 Apple 签名的订阅交易发送到我们的会员服务验证。服务检查签名、目标 App 和商品、到期时间及相关撤销状态。持久撤销数据库保存环境、交易编号、撤销通知时间戳和原因；会员验证模块不保存签名交易本身。</p>
+              <p>Apple 的服务也参与证书和购买验证。您可以在 Apple 账户设置中管理或取消订阅。删除 App、录音或服务器任务不会取消订阅，也不会删除 Apple 自行保留的购买记录。</p>
+            </article>
+            <article class="policy">
+              <h3>5. 保存与保留时间</h3>
+              <p><strong>设备本地：</strong>App 按功能需要保存参考声音、导入的音频、待处理请求、生成结果和作品记录。您可以在 App 内移除保存的本地项目。导出或分享的副本需在您选择的目标位置另行管理。</p>
+              <p><strong>参考声音和 Rap：</strong>语音服务保留的参考声音文件，以及 Rap 请求和输出目录，目前没有自动过期机制。Rap 目录可能包含歌词、风格、生成设置、关联安装标识哈希的任务元数据、生成的 WAV 和 worker 日志。这些服务器记录会保留到运营者将其移除；试听结束或删除本地作品不会自动清除这些记录。</p>
+              <p><strong>歌曲翻唱：</strong>翻唱服务会定期清理超过所配置保留窗口、且已成功或失败的任务目录。默认窗口为任务最后更新时间起 24 小时；服务运行时，每 30 分钟检查一次。该清理不会移除排队中或运行中的任务。服务中断或清理错误可能影响实际时间，因此并非保证上传后整 24 小时即删除。</p>
+              <p><strong>其他记录：</strong>翻唱任务清理不代表运行日志、会员撤销记录或任何备份也已删除。会员撤销数据库目前没有自动过期机制。有关服务器记录的保留或删除，请按下述方式联系我们。</p>
+            </article>
+            <article class="policy">
+              <h3>6. 您的选择与删除请求</h3>
+              <ul>
+                <li>您自行选择提交的文字和文件，并可随时停止发起生成请求。</li>
+                <li>您可以拒绝麦克风权限，或在 iOS 设置中撤销权限，并改用导入音频。</li>
+                <li>在 App 中删除声音样本或作品仅移除本地项目，不会提交服务器数据删除请求。</li>
+                <li>“取消任务”会尝试停止待处理的 Rap 工作，不会删除已有的请求、音频或日志。“不再获取此任务”仅清除当前 App 中的待处理记录，服务器可能仍会继续生成。</li>
+              </ul>
+              <p>如需请求删除服务器数据，或撤回对进一步使用已提交素材的许可，请通过 <a href="https://www.xmaillc.com/#contact">XM LLC 支持联系页面</a>联系我们。请注明 Xsimple Audio Studio、使用的功能、大致提交时间，并在有条件时提供任务编号。为定位相关记录并确认您有权提出删除请求，我们可能需要进一步的信息。</p>
+              <p>请勿在支持消息中提供密码、安装凭证、API Key 或完整的签名购买交易。删除本地项目、卸载 App 或取消任务，不应被视为服务器记录已清除的确认。</p>
+            </article>
+            <article class="policy">
+              <h3>7. 联系与变更</h3>
+              <p>如对本政策、服务器记录或隐私选择有疑问，请通过 <a href="https://www.xmaillc.com/#contact">XM LLC 支持联系页面</a>联系我们，并注明 Xsimple Audio Studio。当 App 的数据处理方式变化时，我们会更新本页面；顶部日期标识最近一次修订。</p>
+              <p><a href="https://www.apple.com/legal/internet-services/itunes/dev/stdeula/">Apple 标准最终用户许可协议</a></p>
+            </article>
+          </div>
+        </div>
+      </section>
+    </main>
+    <footer class="site-footer">
+      <div class="container">
+        <div><strong>XM LLC</strong><p>Xsimple Audio Studio</p></div>
+        <nav class="footer-links" aria-label="Footer">
+          <a href="#english">Privacy Policy</a>
+          <a href="#chinese" lang="zh-Hans">隐私政策</a>
+          <a href="https://www.apple.com/legal/internet-services/itunes/dev/stdeula/">Terms of Use</a>
+          <a href="https://www.xmaillc.com/#contact">Support</a>
+        </nav>
+      </div>
+    </footer>
+  </body>
+</html>
