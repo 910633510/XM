@@ -21,7 +21,7 @@
   <header>
     <div class="eyebrow">AI Real-Time Counter · AI实时计数器</div>
     <h1>使用帮助<br><span lang="en">Support</span></h1>
-    <p class="meta">适用：iPhone，iOS 17 及以上 · 当前界面和 CSV 字段为简体中文</p>
+    <p class="meta">适用：iPhone，iOS 17 及以上 · 1.0.1 版界面和 CSV 字段支持简体中文、英文；1.0 版为简体中文</p>
     <nav aria-label="页面导航"><a href="#chinese">简体中文</a><a href="#english" lang="en">English</a><a href="flowcount-privacy.html">隐私政策 / Privacy</a></nav>
   </header>
 
@@ -51,7 +51,7 @@
     <p>iCloud 视频可能需要系统先下载。请等待下载完成，并为视频副本留出足够存储空间。分析速度取决于视频长度与设备性能；若设备较热，请暂停并待其降温。分析在前台运行。视频副本在关闭分析页面后清理，相册中的原视频不会被删除。</p>
 
     <h3>导出与删除</h3>
-    <p>CSV 包含分类双向分钟汇总、过线事件及摄像头统计间断，不包含原始画面。字段使用简体中文，分钟索引从 0 开始。选择兼容 UTF-8 的表格软件打开即可。</p>
+    <p>CSV 包含分类双向分钟汇总、过线事件及摄像头统计间断，不包含原始画面。1.0.1 版的字段随 App 语言使用简体中文或英文；1.0 版为简体中文。分钟索引从 0 开始。选择兼容 UTF-8 的表格软件打开即可。</p>
     <p>在“历史记录”中使用编辑或滑动删除会话。删除记录不会撤回已经导出的 CSV；请在文件 App 或所选接收方中自行删除副本。详见<a href="flowcount-privacy.html">隐私政策</a>。</p>
 
     <h3>购买与联系支持</h3>
@@ -62,17 +62,17 @@
 
   <article id="english" lang="en">
     <h2>Quick start</h2>
-    <p class="summary">Keep the camera fixed, place a counting line, and start. AI Real-Time Counter records crossings in both directions from the iPhone camera or a saved video. The interface and CSV headings are currently in Simplified Chinese.</p>
+    <p class="summary">Keep the camera fixed, place a counting line, and start. AI Real-Time Counter records crossings in both directions from the iPhone camera or a saved video. Version 1.0.1 supports English and Simplified Chinese for the interface and CSV headings. Version 1.0 uses Simplified Chinese.</p>
     <ol>
-      <li>Choose 实时检测 (Live Detection) and allow camera access, or 导入视频 (Import Video) to select a video from Photos.</li>
+      <li>Choose 实时检测 (Live counting) and allow camera access, or 导入视频 (Import video) to select a video from Photos.</li>
       <li>Drag the two yellow endpoints across the expected path. The arrow indicates A→B; the opposite direction is B→A.</li>
-      <li>Tap 开始统计 (Start). The line is locked after starting. End the session and start another to use a different line.</li>
-      <li>Pause, continue, or end as needed. 取消并保存部分结果 (Cancel and Save Partial Results) keeps analyzed video results and marks them incomplete.</li>
-      <li>Open 历史记录 (History), then 导出 CSV (Export CSV) to share, or 存储 CSV 文件 (Save CSV File) to save to Files.</li>
+      <li>Tap 开始统计 (Start counting). The line is locked after starting. End the session and start another to use a different line.</li>
+      <li>Pause, continue, or end as needed. 取消并保存部分结果 (Stop &amp; save partial results) keeps analyzed video results and marks them incomplete.</li>
+      <li>Open 历史记录 (History), then 导出 CSV (Export CSV) to share, or 存储 CSV 文件 (Save CSV file) to save to Files.</li>
     </ol>
 
     <h3>Understanding the results</h3>
-    <p>当前人员 and 当前车辆 show current detections. 累计过线 shows crossing events. An object returning across the line can produce another event in the reverse direction. These counts are not unique visitors or a safety occupancy measure.</p>
+    <p>People now and Vehicles now show current detections. Total crossings shows crossing events. An object returning across the line can produce another event in the reverse direction. These counts are not unique visitors or a safety occupancy measure.</p>
     <p>The categories are people, cars, buses, trucks, motorcycles, and bicycles. The vehicle total combines the five vehicle categories. A rider and vehicle can be detected separately. Camera minute summaries use active counting time and exclude pauses; video summaries use the original video timeline. A zero-event minute means no crossing was detected, not proof of zero real-world traffic.</p>
 
     <h3>Improving counting conditions</h3>
@@ -80,13 +80,13 @@
     <p>The app is not intended for traffic enforcement, identification, or safety decisions. It does not provide license-plate recognition, network-camera connections, or continuous background monitoring.</p>
 
     <h3>Camera access</h3>
-    <p>Allow camera access for AI Real-Time Counter in iPhone Settings and check that the camera is available. You can also use Import Video. Counting pauses when the app leaves the foreground or camera capture is interrupted. Return and tap 继续统计 (Continue); the app does not reconstruct crossings during a gap.</p>
+    <p>Allow camera access for AI Real-Time Counter in iPhone Settings and check that the camera is available. You can also use Import video. Counting pauses when the app leaves the foreground or camera capture is interrupted. Return and tap 继续统计 (Resume); the app does not reconstruct crossings during a gap.</p>
 
     <h3>Slow video import or analysis</h3>
     <p>The system may need to download an iCloud video first. Wait for it to finish and keep enough free storage for a video copy. Analysis time depends on video length and device performance. If the device becomes hot, pause and allow it to cool. Analysis runs in the foreground. The analysis copy is cleaned up after the screen closes; the original in Photos is not deleted.</p>
 
     <h3>Export and deletion</h3>
-    <p>CSV includes category/direction minute totals, crossing events, and camera interruptions, not original footage. Headings are in Simplified Chinese and minute indices start at 0. Open it with a spreadsheet tool that supports UTF-8.</p>
+    <p>CSV includes category/direction minute totals, crossing events, and camera interruptions, not original footage. In version 1.0.1, headings follow the app language (English or Simplified Chinese). Version 1.0 uses Simplified Chinese. Minute indices start at 0. Open it with a spreadsheet tool that supports UTF-8.</p>
     <p>Use Edit or swipe to delete a session in History. Deletion does not recall exported CSV files; delete those copies in Files or at the selected recipient. See the <a href="flowcount-privacy.html">privacy policy</a> for details.</p>
 
     <h3>Purchase and contact</h3>
