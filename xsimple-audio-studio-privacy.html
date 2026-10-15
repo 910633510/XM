@@ -71,28 +71,28 @@
             </article>
             <article class="policy">
               <h3>2. Where generation happens</h3>
-              <p>The app's voice-generation, song-cover and Rap requests are processed by models running on servers operated by XM LLC. These generation flows use locally installed XTTS, HQ-SVC and ACE-Step models; they do not call third-party AI model APIs. “Locally installed” refers to our servers, not your iPhone.</p>
-              <p>The app uses HTTPS to communicate with services at <strong>api-voiceclone.xmaillc.com</strong> and <strong>cover.xmaillc.com</strong>. Our public gateway routes requests to the processing service. Server processing and network delivery are necessary to provide the requested generation.</p>
+              <p>The app's voice-generation, song-cover and Rap requests are processed by XM LLC-operated AI audio services. These generation flows do not send your audio or text to third-party AI model providers or call third-party AI model APIs. Processing takes place on our servers, not on your iPhone.</p>
+              <p>The app uses encrypted HTTPS connections to submit your requests to our services and retrieve results. Server processing and network delivery are necessary to provide the requested generation.</p>
               <p>This description of AI generation does not mean that all app-related activity stays within XM LLC. Apple provides App Store delivery, purchases and subscription systems. Links you choose to open, and destinations to which you export or share audio, operate under their own policies.</p>
             </article>
             <article class="policy">
               <h3>3. Identifiers and operational records</h3>
-              <p>No app account sign-in is required. The app nevertheless uses identifiers to operate its features. It saves a random Rap installation credential in the iOS Keychain. The Rap server links each job to a hash of that credential so another installation cannot retrieve or cancel it. A reference session or job identifier associates submitted material with the requested work.</p>
-              <p>Services receive connection information, including the connecting IP address, and maintain job status, timestamps, errors and diagnostic records. The membership gateway uses short-lived, in-memory keyed hashes of IP addresses for request limits. Rap separately stores keyed IP hashes and installation hashes for rate limiting; old rate-limit rows are removed when later rate checks run.</p>
-              <p>These identifiers support job access, purchase handling, service operation and abuse prevention. Hashing an identifier does not make the associated content anonymous.</p>
+              <p>No app account sign-in is required. The app nevertheless uses identifiers to operate its features. It securely saves a random Rap installation identifier on your device. Our service associates Rap jobs with a protected form of that identifier to control who may retrieve or cancel them. Reference-session and job identifiers associate submitted material with the requested work.</p>
+              <p>Services receive connection information, including the connecting IP address, and maintain job status, timestamps, errors and diagnostic records. Membership requests use short-lived records derived from IP addresses for request limits. Rap separately retains protected records derived from IP addresses and installation identifiers for abuse prevention; expired rate-limit records are removed during subsequent checks.</p>
+              <p>These identifiers support job access, purchase handling, service operation and abuse prevention. The safeguards applied to identifiers do not make the associated content anonymous.</p>
             </article>
             <article class="policy">
               <h3>4. Purchases and membership</h3>
-              <p>Apple handles payment through in-app purchase. The app does not ask for your payment-card or bank-account details. It uses StoreKit purchase information to manage monthly subscription benefits. Subscription state is checked on the device and by the membership service. The app creates a random purchase-association token, keeps it in the iOS Keychain, and supplies it to Apple when you subscribe.</p>
-              <p>When you request a membership feature, the app sends an Apple-signed subscription transaction to our membership service for verification. The service checks the signature, intended app and product, expiry and relevant revocation state. Its persistent revocation database stores the environment, transaction identifier, revocation-notification timestamp and reason. The membership verifier does not store the signed transaction itself.</p>
+              <p>Apple handles payment through in-app purchase. The app does not ask for your payment-card or bank-account details. It uses Apple purchase information to manage monthly subscription benefits. Subscription state is checked on the device and by the membership service. The app creates a random purchase-association identifier, saves it securely on your device, and supplies it to Apple when you subscribe.</p>
+              <p>When you request a membership feature, the app sends Apple-verified subscription information to our membership service to check whether your subscription is valid. To handle revoked or refunded entitlements, the service retains transaction identifiers, subscription environment, notification dates and reasons. It does not retain the complete signed purchase transaction.</p>
               <p>Apple's services also participate in certificate and purchase verification. You can manage or cancel subscriptions in your Apple account settings. Deleting an app, a recording or a server job does not cancel a subscription or remove Apple's own purchase records.</p>
             </article>
             <article class="policy">
               <h3>5. Storage and retention</h3>
               <p><strong>On your device:</strong> the app saves reference voices, imported audio, pending requests, generated results and creation history for its features. You can remove saved local items in the app. Local copies that you export or share must be managed at the destination you chose.</p>
-              <p><strong>Voice references and Rap:</strong> voice-reference files retained by the speech service and Rap request/output folders currently have no automatic expiry. Rap folders can contain lyrics, style, generation settings, job metadata linked to the installation hash, generated WAV files and worker logs. These server records remain until removed by the operator; they are not automatically erased when you finish listening or delete a local creation.</p>
+              <p><strong>Voice references and Rap:</strong> voice-reference files retained by the speech service and Rap request and output records currently have no automatic expiry. Rap records can include lyrics, style, generation settings, job information associated with the installation identifier, generated audio and operational diagnostics. These server records remain until removed by the operator; they are not automatically erased when you finish listening or delete a local creation.</p>
               <p><strong>Song covers:</strong> the cover service periodically removes completed or failed job folders after its configured retention window. The default window is 24 hours after the job's last update, and the cleanup checks run every 30 minutes while the service is running. Queued or running jobs are not removed by that cleanup. Timing can be affected by service interruptions or cleanup errors, so this is not a guarantee of deletion exactly 24 hours after upload.</p>
-              <p><strong>Other records:</strong> the song-cover job cleanup does not establish deletion of operational logs, membership revocation records or any backups. The membership revocation database currently has no automatic expiry. Contact us about the retention or deletion of server records using the process below.</p>
+              <p><strong>Other records:</strong> the song-cover job cleanup does not establish deletion of operational logs, membership revocation records or any backups. Membership revocation records currently have no automatic expiry. Contact us about the retention or deletion of server records using the process below.</p>
             </article>
             <article class="policy">
               <h3>6. Your choices and deletion requests</h3>
@@ -131,28 +131,28 @@
             </article>
             <article class="policy">
               <h3>2. 生成在哪里完成</h3>
-              <p>App 的语音生成、翻唱和 Rap 请求由 XM LLC 运营的服务器上的模型处理。这些生成流程使用安装在服务器上的 XTTS、HQ-SVC 和 ACE-Step 模型，不调用第三方 AI 模型 API。这里的“本地安装”指我们的服务器，并非您的 iPhone 本机。</p>
-              <p>App 使用 HTTPS 与 <strong>api-voiceclone.xmaillc.com</strong> 和 <strong>cover.xmaillc.com</strong> 的服务通信。公网网关将请求转发给处理服务。完成您请求的生成需要服务器处理和网络传输。</p>
+              <p>App 的语音生成、翻唱和 Rap 请求由 XM LLC 自营 AI 音频服务处理。这些生成流程不会将您的音频或文字发送给第三方 AI 模型提供商，也不调用第三方 AI 模型 API。处理在我们的服务器上完成，并非在您的 iPhone 本机上完成。</p>
+              <p>App 通过加密的 HTTPS 连接向我们的服务提交请求并获取结果。完成您请求的生成需要服务器处理和网络传输。</p>
               <p>上述 AI 生成说明不代表 App 的所有相关活动都仅由 XM LLC 完成。Apple 提供 App Store 分发、购买和订阅系统。您主动打开的链接，以及导出或分享音频的目标服务，适用各自的政策。</p>
             </article>
             <article class="policy">
               <h3>3. 标识符与运行记录</h3>
-              <p>无需 App 账号登录，但 App 仍会使用标识符来提供功能。App 在 iOS 钥匙串中保存随机 Rap 安装凭证。Rap 服务端以该凭证的哈希关联任务，防止其他安装实例获取或取消任务。参考声音会话编号或任务编号用于关联提交的素材和请求。</p>
-              <p>服务会接收包括连接 IP 地址在内的网络信息，并保存任务状态、时间戳、错误及诊断记录。会员网关使用短时保存在内存中的 IP 键控哈希执行请求限流。Rap 服务另外存储 IP 键控哈希及安装标识哈希用于限流，并在后续限流检查时移除过期记录。</p>
-              <p>这些标识符用于任务访问、购买处理、服务运行和防止滥用。对标识符进行哈希处理，并不代表相关内容已经匿名化。</p>
+              <p>无需 App 账号登录，但 App 仍会使用标识符来提供功能。App 在设备上安全保存随机 Rap 安装标识。我们的服务使用经过保护的安装标识关联 Rap 任务，以控制任务的获取和取消权限。参考声音会话编号和任务编号用于关联提交的素材与请求。</p>
+              <p>服务会接收包括连接 IP 地址在内的网络信息，并保存任务状态、时间戳、错误及诊断记录。会员请求会使用短时保存、由 IP 地址派生的记录来限制请求频率。Rap 另外保留由 IP 地址和安装标识派生的受保护记录以防止滥用，并在后续检查时移除过期的限流记录。</p>
+              <p>这些标识符用于任务访问、购买处理、服务运行和防止滥用。对标识符采取保护措施，并不代表相关内容已经匿名化。</p>
             </article>
             <article class="policy">
               <h3>4. 购买与会员</h3>
-              <p>付款由 Apple 通过应用内购买处理。App 不要求您提供银行卡或银行账户信息。App 使用 StoreKit 购买信息管理月会员权益，并在设备上和会员服务端核验订阅状态。App 会生成随机购买关联标识，保存在 iOS 钥匙串中，并在订阅时提交给 Apple。</p>
-              <p>请求会员功能时，App 会将 Apple 签名的订阅交易发送到我们的会员服务验证。服务检查签名、目标 App 和商品、到期时间及相关撤销状态。持久撤销数据库保存环境、交易编号、撤销通知时间戳和原因；会员验证模块不保存签名交易本身。</p>
+              <p>付款由 Apple 通过应用内购买处理。App 不要求您提供银行卡或银行账户信息。App 使用 Apple 购买信息管理月会员权益，并在设备上和会员服务端核验订阅状态。App 会生成随机购买关联标识，安全保存在设备上，并在订阅时提交给 Apple。</p>
+              <p>请求会员功能时，App 会将经 Apple 验证的订阅信息发送到我们的会员服务，以核查订阅是否有效。为处理权益撤销或退款，服务会保留交易编号、订阅环境、通知日期及原因，不保留完整的签名购买交易。</p>
               <p>Apple 的服务也参与证书和购买验证。您可以在 Apple 账户设置中管理或取消订阅。删除 App、录音或服务器任务不会取消订阅，也不会删除 Apple 自行保留的购买记录。</p>
             </article>
             <article class="policy">
               <h3>5. 保存与保留时间</h3>
               <p><strong>设备本地：</strong>App 按功能需要保存参考声音、导入的音频、待处理请求、生成结果和作品记录。您可以在 App 内移除保存的本地项目。导出或分享的副本需在您选择的目标位置另行管理。</p>
-              <p><strong>参考声音和 Rap：</strong>语音服务保留的参考声音文件，以及 Rap 请求和输出目录，目前没有自动过期机制。Rap 目录可能包含歌词、风格、生成设置、关联安装标识哈希的任务元数据、生成的 WAV 和 worker 日志。这些服务器记录会保留到运营者将其移除；试听结束或删除本地作品不会自动清除这些记录。</p>
+              <p><strong>参考声音和 Rap：</strong>语音服务保留的参考声音文件，以及 Rap 请求和输出记录，目前没有自动过期机制。Rap 记录可能包含歌词、风格、生成设置、关联安装标识的任务信息、生成音频和运行诊断记录。这些服务器记录会保留到运营者将其移除；试听结束或删除本地作品不会自动清除这些记录。</p>
               <p><strong>歌曲翻唱：</strong>翻唱服务会定期清理超过所配置保留窗口、且已成功或失败的任务目录。默认窗口为任务最后更新时间起 24 小时；服务运行时，每 30 分钟检查一次。该清理不会移除排队中或运行中的任务。服务中断或清理错误可能影响实际时间，因此并非保证上传后整 24 小时即删除。</p>
-              <p><strong>其他记录：</strong>翻唱任务清理不代表运行日志、会员撤销记录或任何备份也已删除。会员撤销数据库目前没有自动过期机制。有关服务器记录的保留或删除，请按下述方式联系我们。</p>
+              <p><strong>其他记录：</strong>翻唱任务清理不代表运行日志、会员撤销记录或任何备份也已删除。会员撤销记录目前没有自动过期机制。有关服务器记录的保留或删除，请按下述方式联系我们。</p>
             </article>
             <article class="policy">
               <h3>6. 您的选择与删除请求</h3>
