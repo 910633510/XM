@@ -46,7 +46,7 @@
           <p class="eyebrow">Product Privacy Policy</p>
           <h1 id="policy-title">Xsimple Audio Studio</h1>
           <p>Privacy Policy · 隐私政策</p>
-          <p>Last updated: October 14, 2026 · 更新日期：2026 年 10 月 14 日</p>
+          <p>Last updated: October 15, 2026 · 更新日期：2026 年 10 月 15 日</p>
           <nav class="language-links" aria-label="Policy language">
             <a href="#english" lang="en">English</a>
             <a href="#chinese" lang="zh-Hans">简体中文</a>
@@ -65,20 +65,20 @@
               <ul>
                 <li><strong>Voice cloning and text-to-speech:</strong> the selected reference recording, text, language and synthesis settings are sent to our voice service to generate speech.</li>
                 <li><strong>Song covers:</strong> the imported song, selected reference voice and requested duration are sent to our cover service. Processing creates the cover and associated audio files, such as separated vocals and accompaniment.</li>
-                <li><strong>Rap:</strong> your lyrics, musical style, vocal language, tempo, duration, request identifier and generation seed are sent to our Rap service to generate vocals and music. Rap generation does not require a microphone recording.</li>
+                <li><strong>Music generation (songs, Rap and instrumentals):</strong> your selected generation mode, musical style, language setting, tempo, duration, request identifier and generation seed are sent to our music service. Songs and Rap also send your lyrics to generate vocals and music. In Instrumental mode, the app sends no lyric text and the service clears any supplied lyrics before saving or generating the request. Music generation does not require a microphone recording.</li>
               </ul>
               <p>Please submit only voices, recordings, songs and lyrics you own or have permission to use. Avoid including personal or confidential information that is unnecessary for your request.</p>
             </article>
             <article class="policy">
               <h3>2. Where generation happens</h3>
-              <p>The app's voice-generation, song-cover and Rap requests are processed by XM LLC-operated AI audio services. These generation flows do not send your audio or text to third-party AI model providers or call third-party AI model APIs. Processing takes place on our servers, not on your iPhone.</p>
+              <p>The app's voice-generation, song-cover and music-generation requests are processed by XM LLC-operated AI audio services. These generation flows do not send your audio or text to third-party AI model providers or call third-party AI model APIs. Processing takes place on our servers, not on your iPhone.</p>
               <p>The app uses encrypted HTTPS connections to submit your requests to our services and retrieve results. Server processing and network delivery are necessary to provide the requested generation.</p>
               <p>This description of AI generation does not mean that all app-related activity stays within XM LLC. Apple provides App Store delivery, purchases and subscription systems. Links you choose to open, and destinations to which you export or share audio, operate under their own policies.</p>
             </article>
             <article class="policy">
               <h3>3. Identifiers and operational records</h3>
-              <p>No app account sign-in is required. The app nevertheless uses identifiers to operate its features. It securely saves a random Rap installation identifier on your device. Our service associates Rap jobs with a protected form of that identifier to control who may retrieve or cancel them. Reference-session and job identifiers associate submitted material with the requested work.</p>
-              <p>Services receive connection information, including the connecting IP address, and maintain job status, timestamps, errors and diagnostic records. Membership requests use short-lived records derived from IP addresses for request limits. Rap separately retains protected records derived from IP addresses and installation identifiers for abuse prevention; expired rate-limit records are removed during subsequent checks.</p>
+              <p>No app account sign-in is required. The app nevertheless uses identifiers to operate its features. It securely saves a random music-service installation identifier on your device. Our service associates music-generation jobs (including Rap) with a protected form of that identifier to control who may retrieve or cancel them. Reference-session and job identifiers associate submitted material with the requested work.</p>
+              <p>Services receive connection information, including the connecting IP address, and maintain job status, timestamps, errors and diagnostic records. Membership requests use short-lived records derived from IP addresses for request limits. The music-generation service separately retains protected records derived from IP addresses and installation identifiers for abuse prevention; expired rate-limit records are removed during subsequent checks.</p>
               <p>These identifiers support job access, purchase handling, service operation and abuse prevention. The safeguards applied to identifiers do not make the associated content anonymous.</p>
             </article>
             <article class="policy">
@@ -90,7 +90,7 @@
             <article class="policy">
               <h3>5. Storage and retention</h3>
               <p><strong>On your device:</strong> the app saves reference voices, imported audio, pending requests, generated results and creation history for its features. You can remove saved local items in the app. Local copies that you export or share must be managed at the destination you chose.</p>
-              <p><strong>Voice references and Rap:</strong> voice-reference files retained by the speech service and Rap request and output records currently have no automatic expiry. Rap records can include lyrics, style, generation settings, job information associated with the installation identifier, generated audio and operational diagnostics. These server records remain until removed by the operator; they are not automatically erased when you finish listening or delete a local creation.</p>
+              <p><strong>Voice references and generated music:</strong> voice-reference files retained by the speech service and music request and output records, including Rap, currently have no automatic expiry. Music records can include lyrics for songs and Rap, style, generation mode and settings, job information associated with the installation identifier, generated audio and operational diagnostics. Instrumental requests are saved without lyric text. These server records remain until removed by the operator; they are not automatically erased when you finish listening or delete a local creation.</p>
               <p><strong>Song covers:</strong> the cover service periodically removes completed or failed job folders after its configured retention window. The default window is 24 hours after the job's last update, and the cleanup checks run every 30 minutes while the service is running. Queued or running jobs are not removed by that cleanup. Timing can be affected by service interruptions or cleanup errors, so this is not a guarantee of deletion exactly 24 hours after upload.</p>
               <p><strong>Other records:</strong> the song-cover job cleanup does not establish deletion of operational logs, membership revocation records or any backups. Membership revocation records currently have no automatic expiry. Contact us about the retention or deletion of server records using the process below.</p>
             </article>
@@ -100,7 +100,7 @@
                 <li>You choose which text and files to submit. You can stop making generation requests at any time.</li>
                 <li>You can deny or revoke microphone access in iOS Settings and use imported audio instead.</li>
                 <li>Deleting a voice sample or creation in the app removes that local item; it does not send a server-data deletion request.</li>
-                <li>Cancel job attempts to stop pending Rap work. It does not delete existing requests, audio or logs. Stop tracking clears the pending request from this app and may leave server generation running.</li>
+                <li>Cancel job attempts to stop pending music-generation work, including Rap. It does not delete existing requests, audio or logs. Stop tracking clears the pending request from this app and may leave server generation running.</li>
               </ul>
               <p>To request deletion of server data or withdraw permission for further use of submitted material, contact XM LLC through <a href="https://www.xmaillc.com/#contact">our support contact page</a>. Identify Xsimple Audio Studio, the feature used, the approximate submission time, and a job identifier if available. We may need additional information to locate the relevant records and verify that you are authorized to request their deletion.</p>
               <p>Do not send passwords, installation credentials, API keys or full signed purchase transactions in a support message. A local deletion, uninstall or cancelled job should not be treated as confirmation that server records have been erased.</p>
@@ -125,20 +125,20 @@
               <ul>
                 <li><strong>声音克隆与文字转语音：</strong>选定的参考录音、文字、语言及合成设置会发送到我们的语音服务，用于生成语音。</li>
                 <li><strong>歌曲翻唱：</strong>导入的歌曲、选定的参考声音和请求时长会发送到翻唱服务。处理过程会生成翻唱及相关音频，例如分离的人声与伴奏。</li>
-                <li><strong>Rap：</strong>歌词、音乐风格、演唱语言、节奏、时长、请求编号和生成种子会发送到 Rap 服务，用于生成人声与音乐。Rap 生成不要求录制麦克风音频。</li>
+                <li><strong>音乐生成（歌词歌曲、Rap 与纯音乐）：</strong>所选生成模式、音乐风格、语言设置、节奏、时长、请求编号和生成种子会发送到音乐服务。歌词歌曲和 Rap 还会发送歌词，用于生成人声与音乐。纯音乐模式下，App 不发送歌词文字；服务也会在保存或生成请求前清空任何传入的歌词。音乐生成不要求录制麦克风音频。</li>
               </ul>
               <p>请仅提交您拥有权利或已获授权的声音、录音、歌曲和歌词，避免提交生成任务不需要的个人或保密信息。</p>
             </article>
             <article class="policy">
               <h3>2. 生成在哪里完成</h3>
-              <p>App 的语音生成、翻唱和 Rap 请求由 XM LLC 自营 AI 音频服务处理。这些生成流程不会将您的音频或文字发送给第三方 AI 模型提供商，也不调用第三方 AI 模型 API。处理在我们的服务器上完成，并非在您的 iPhone 本机上完成。</p>
+              <p>App 的语音生成、翻唱和音乐生成请求由 XM LLC 自营 AI 音频服务处理。这些生成流程不会将您的音频或文字发送给第三方 AI 模型提供商，也不调用第三方 AI 模型 API。处理在我们的服务器上完成，并非在您的 iPhone 本机上完成。</p>
               <p>App 通过加密的 HTTPS 连接向我们的服务提交请求并获取结果。完成您请求的生成需要服务器处理和网络传输。</p>
               <p>上述 AI 生成说明不代表 App 的所有相关活动都仅由 XM LLC 完成。Apple 提供 App Store 分发、购买和订阅系统。您主动打开的链接，以及导出或分享音频的目标服务，适用各自的政策。</p>
             </article>
             <article class="policy">
               <h3>3. 标识符与运行记录</h3>
-              <p>无需 App 账号登录，但 App 仍会使用标识符来提供功能。App 在设备上安全保存随机 Rap 安装标识。我们的服务使用经过保护的安装标识关联 Rap 任务，以控制任务的获取和取消权限。参考声音会话编号和任务编号用于关联提交的素材与请求。</p>
-              <p>服务会接收包括连接 IP 地址在内的网络信息，并保存任务状态、时间戳、错误及诊断记录。会员请求会使用短时保存、由 IP 地址派生的记录来限制请求频率。Rap 另外保留由 IP 地址和安装标识派生的受保护记录以防止滥用，并在后续检查时移除过期的限流记录。</p>
+              <p>无需 App 账号登录，但 App 仍会使用标识符来提供功能。App 在设备上安全保存随机音乐服务安装标识。我们的服务使用经过保护的安装标识关联音乐生成任务（包括 Rap），以控制任务的获取和取消权限。参考声音会话编号和任务编号用于关联提交的素材与请求。</p>
+              <p>服务会接收包括连接 IP 地址在内的网络信息，并保存任务状态、时间戳、错误及诊断记录。会员请求会使用短时保存、由 IP 地址派生的记录来限制请求频率。音乐生成服务另外保留由 IP 地址和安装标识派生的受保护记录以防止滥用，并在后续检查时移除过期的限流记录。</p>
               <p>这些标识符用于任务访问、购买处理、服务运行和防止滥用。对标识符采取保护措施，并不代表相关内容已经匿名化。</p>
             </article>
             <article class="policy">
@@ -150,7 +150,7 @@
             <article class="policy">
               <h3>5. 保存与保留时间</h3>
               <p><strong>设备本地：</strong>App 按功能需要保存参考声音、导入的音频、待处理请求、生成结果和作品记录。您可以在 App 内移除保存的本地项目。导出或分享的副本需在您选择的目标位置另行管理。</p>
-              <p><strong>参考声音和 Rap：</strong>语音服务保留的参考声音文件，以及 Rap 请求和输出记录，目前没有自动过期机制。Rap 记录可能包含歌词、风格、生成设置、关联安装标识的任务信息、生成音频和运行诊断记录。这些服务器记录会保留到运营者将其移除；试听结束或删除本地作品不会自动清除这些记录。</p>
+              <p><strong>参考声音和生成音乐：</strong>语音服务保留的参考声音文件，以及音乐请求和输出记录（包括 Rap），目前没有自动过期机制。音乐记录可能包含歌词歌曲及 Rap 的歌词、风格、生成模式与设置、关联安装标识的任务信息、生成音频和运行诊断记录。纯音乐请求保存时不包含歌词文字。这些服务器记录会保留到运营者将其移除；试听结束或删除本地作品不会自动清除这些记录。</p>
               <p><strong>歌曲翻唱：</strong>翻唱服务会定期清理超过所配置保留窗口、且已成功或失败的任务目录。默认窗口为任务最后更新时间起 24 小时；服务运行时，每 30 分钟检查一次。该清理不会移除排队中或运行中的任务。服务中断或清理错误可能影响实际时间，因此并非保证上传后整 24 小时即删除。</p>
               <p><strong>其他记录：</strong>翻唱任务清理不代表运行日志、会员撤销记录或任何备份也已删除。会员撤销记录目前没有自动过期机制。有关服务器记录的保留或删除，请按下述方式联系我们。</p>
             </article>
@@ -160,7 +160,7 @@
                 <li>您自行选择提交的文字和文件，并可随时停止发起生成请求。</li>
                 <li>您可以拒绝麦克风权限，或在 iOS 设置中撤销权限，并改用导入音频。</li>
                 <li>在 App 中删除声音样本或作品仅移除本地项目，不会提交服务器数据删除请求。</li>
-                <li>“取消任务”会尝试停止待处理的 Rap 工作，不会删除已有的请求、音频或日志。“不再获取此任务”仅清除当前 App 中的待处理记录，服务器可能仍会继续生成。</li>
+                <li>“取消任务”会尝试停止待处理的音乐生成工作（包括 Rap），不会删除已有的请求、音频或日志。“不再获取此任务”仅清除当前 App 中的待处理记录，服务器可能仍会继续生成。</li>
               </ul>
               <p>如需请求删除服务器数据，或撤回对进一步使用已提交素材的许可，请通过 <a href="https://www.xmaillc.com/#contact">XM LLC 支持联系页面</a>联系我们。请注明 Xsimple Audio Studio、使用的功能、大致提交时间，并在有条件时提供任务编号。为定位相关记录并确认您有权提出删除请求，我们可能需要进一步的信息。</p>
               <p>请勿在支持消息中提供密码、安装凭证、API Key 或完整的签名购买交易。删除本地项目、卸载 App 或取消任务，不应被视为服务器记录已清除的确认。</p>
