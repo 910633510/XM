@@ -21,24 +21,30 @@
   <header>
     <div class="eyebrow">AI Real-Time Counter · AI实时计数器</div>
     <h1>使用帮助<br><span lang="en">Support</span></h1>
-    <p class="meta">适用：iPhone，iOS 17 及以上 · 1.0.1 版界面和 CSV 字段支持简体中文、英文；1.0 版为简体中文</p>
+    <p class="meta">适用：iPhone，iOS 17 及以上 · 本页介绍 1.0.2 的计数设置；界面和 CSV 字段支持简体中文、英文</p>
     <nav aria-label="页面导航"><a href="#chinese">简体中文</a><a href="#english" lang="en">English</a><a href="flowcount-privacy.html">隐私政策 / Privacy</a></nav>
   </header>
 
   <article id="chinese" lang="zh-Hans">
     <h2>快速开始</h2>
-    <p class="summary">固定手机，设置一条计数线，再开始统计。AI实时计数器记录两个方向的过线事件，支持摄像头画面和相册视频。</p>
+    <p class="summary">固定手机，选择“过线计数”或“区域通行”，设置范围和方向后开始统计。AI实时计数器支持摄像头画面和相册视频。区域通行等新增设置适用于 1.0.2；旧版仍可使用过线计数。</p>
     <ol>
       <li>在首页选择“实时检测”，允许摄像头权限；或选择“导入视频”，从相册选取一段视频。</li>
-      <li>拖动黄色线段的两个圆点，让计数线横跨目标经过的路径。箭头方向为 A→B，反向为 B→A。</li>
-      <li>点击“开始统计”。计数线在统计开始后锁定；如需换线，请结束本次统计后重新开始。</li>
+      <li>过线模式中，选择“计数线”后拖动黄色端点，让线横跨目标路径。A、B 表示线的两侧，并非两个端点；可切换 A/B 两侧，选择双向、仅 A→B 或仅 B→A。</li>
+      <li>区域通行模式中，调整矩形，再将四条边分别设为 A、B 或不计。至少设置一条 A 边和一条 B 边；两组都可包含多条边。点击“开始统计”后设置锁定，需要修改时请结束本次统计后重新开始。</li>
       <li>按需暂停、继续或结束。“取消并保存部分结果”会保留已分析的视频统计，并标为未完成。</li>
       <li>在“历史记录”查看结果，选择“导出 CSV”进行分享，或“存储 CSV 文件”保存到文件 App。</li>
     </ol>
 
     <h3>怎样理解结果</h3>
-    <p>“当前人员”和“当前车辆”表示当前检测到的目标；“累计过线”表示目标经过计数线的次数。返回经过计数线可能产生另一个方向的事件，它不是去重后的独立人数或安全占用人数。</p>
+    <p>“当前人员”和“当前车辆”表示当前检测到的目标；“累计流量”表示所选模式和方向下记录的事件数。过线模式记录跨越计数线；区域通行模式只在从任意 A 边进入、从任意 B 边离开后计一次 A→B，反向计为 B→A。仅进入、停留，或从同一组边进出，不计数。它不是去重后的独立人数或安全占用人数。</p>
     <p>人员、汽车、公交车、卡车、摩托车和自行车分别记录。车辆合计包含上述五种车辆；骑行者和车辆可能分别识别。摄像头分钟汇总按有效统计时间计算，不包含暂停时间；视频按原视频时间统计。零记录分钟表示没有检测到过线事件，不保证实际没有人车经过。</p>
+
+    <h3>区域、方向与远景设置</h3>
+    <p>区域通行以目标检测框底边中点判断进出。框外需要留出可见空间，以观察进入前和离开后的轨迹。开始时已在框内的目标，需要下一次完整通行才会计数。环岛可选择清楚可见的一段路径，把进入边设为 A、离开边设为 B。</p>
+    <p>过线模式也可启用矩形范围，只有底边中点在范围内的目标才参与过线统计；进入矩形本身不会增加次数。选择单向计数可排除不需要的方向。</p>
+    <p>“远景增强”只分析蓝色检测区，将该区域的目标输入尺度放大约 2 倍；区域外不检测。把计数线或通行框放在蓝色区内，通行框外仍需保留观察空间。过小或被遮挡的目标依然可能漏检。</p>
+    <p>“自行车需移动确认”有助于减少固定机位下路面自行车标记造成的计数，但不能保证完全消除；刚从静止启动的真实自行车可能较晚计数。当前模型没有快递电动三轮车专用类别，可能识别为卡车或摩托车，请人工复核。</p>
 
     <h3>如何减少漏计或重复</h3>
     <p>保持手机固定，选择光线充足、目标较大且遮挡较少的场景，并让计数线远离画面边缘。过线判断依据目标框底边中心；不要把线放在只露出目标局部的位置。密集遮挡、远处小目标、弱光和镜头移动都会影响结果。请人工复核重要统计。</p>
@@ -51,7 +57,7 @@
     <p>iCloud 视频可能需要系统先下载。请等待下载完成，并为视频副本留出足够存储空间。分析速度取决于视频长度与设备性能；若设备较热，请暂停并待其降温。分析在前台运行。视频副本在关闭分析页面后清理，相册中的原视频不会被删除。</p>
 
     <h3>导出与删除</h3>
-    <p>CSV 包含分类双向分钟汇总、过线事件及摄像头统计间断，不包含原始画面。1.0.1 版的字段随 App 语言使用简体中文或英文；1.0 版为简体中文。分钟索引从 0 开始。选择兼容 UTF-8 的表格软件打开即可。</p>
+    <p>CSV 包含分类双向分钟汇总、计数事件、计数设置及摄像头统计间断，不包含原始画面。1.0.2 记录区域、边分组、方向等设置，并区分区域通行事件；旧会话保留原有含义。1.0.1 及以上版本的字段随 App 语言使用简体中文或英文。分钟索引从 0 开始，使用兼容 UTF-8 的表格软件打开即可。</p>
     <p>在“历史记录”中使用编辑或滑动删除会话。删除记录不会撤回已经导出的 CSV；请在文件 App 或所选接收方中自行删除副本。详见<a href="flowcount-privacy.html">隐私政策</a>。</p>
 
     <h3>购买与联系支持</h3>
@@ -62,31 +68,37 @@
 
   <article id="english" lang="en">
     <h2>Quick start</h2>
-    <p class="summary">Keep the camera fixed, place a counting line, and start. AI Real-Time Counter records crossings in both directions from the iPhone camera or a saved video. Version 1.0.1 supports English and Simplified Chinese for the interface and CSV headings. Version 1.0 uses Simplified Chinese.</p>
+    <p class="summary">Keep the camera fixed, choose Line crossing or Region transit, then set the area and direction before starting. AI Real-Time Counter analyzes the iPhone camera or a saved video. Region transit and the new settings described here apply to version 1.0.2; older versions retain line counting. The interface and CSV headings support English and Simplified Chinese.</p>
     <ol>
-      <li>Choose 实时检测 (Live counting) and allow camera access, or 导入视频 (Import video) to select a video from Photos.</li>
-      <li>Drag the two yellow endpoints across the expected path. The arrow indicates A→B; the opposite direction is B→A.</li>
-      <li>Tap 开始统计 (Start counting). The line is locked after starting. End the session and start another to use a different line.</li>
-      <li>Pause, continue, or end as needed. 取消并保存部分结果 (Stop &amp; save partial results) keeps analyzed video results and marks them incomplete.</li>
-      <li>Open 历史记录 (History), then 导出 CSV (Export CSV) to share, or 存储 CSV 文件 (Save CSV file) to save to Files.</li>
+      <li>Choose Live counting and allow camera access, or Import video to select a video from Photos.</li>
+      <li>In Line crossing mode, select Line and drag the yellow endpoints across the expected path. A and B mark the two sides of the line, not its endpoints. Flip A/B to swap them, then select Both ways, A→B only, or B→A only.</li>
+      <li>In Region transit mode, move and resize the rectangle, then assign each edge to A, B, or Ignore. Choose at least one A edge and one B edge; either group can include several edges. Tap Start counting. Settings lock for the session; end it and start another to change them.</li>
+      <li>Pause, continue, or end as needed. Stop &amp; save partial results keeps analyzed video results and marks them incomplete.</li>
+      <li>Open History, then Export CSV to share, or Save CSV file to save to Files.</li>
     </ol>
 
     <h3>Understanding the results</h3>
-    <p>People now and Vehicles now show current detections. Total crossings shows crossing events. An object returning across the line can produce another event in the reverse direction. These counts are not unique visitors or a safety occupancy measure.</p>
+    <p>People now and Vehicles now show current detections. Total flow shows events recorded for the selected mode and direction. Line crossing counts crossings of the line. Region transit counts A→B only after an object enters through any A edge and exits through any B edge; the reverse counts as B→A. Entering alone, waiting inside, or entering and leaving through the same group does not count. These counts are not unique visitors or a safety occupancy measure.</p>
     <p>The categories are people, cars, buses, trucks, motorcycles, and bicycles. The vehicle total combines the five vehicle categories. A rider and vehicle can be detected separately. Camera minute summaries use active counting time and exclude pauses; video summaries use the original video timeline. A zero-event minute means no crossing was detected, not proof of zero real-world traffic.</p>
+
+    <h3>Areas, directions, and distant targets</h3>
+    <p>Region transit follows the bottom-center of each object's box. Leave visible space outside the rectangle to observe the path before entry and after exit. An object already inside when counting starts needs a new complete journey to count. For a roundabout, select a clearly visible section of the route, with the entry edge assigned to A and the exit edge to B.</p>
+    <p>Line crossing can also be limited to a rectangle: only objects with their bottom-center point inside it can count across the line. Entering that rectangle alone adds no count. Select a single counting direction to exclude the other direction.</p>
+    <p>Distant targets analyzes only the blue detection area at approximately 2× input scale. Objects outside it are not detected. Keep the line or transit rectangle inside the blue area, with visible space outside the transit edges. Very small or occluded targets may still be missed.</p>
+    <p>Require bicycle movement helps reduce counts from stationary bicycle markings when the camera is fixed, but cannot guarantee their removal. A real bicycle starting from rest may take longer to count. The current model has no dedicated electric cargo tricycle class and may label one as a truck or motorcycle. Check important results manually.</p>
 
     <h3>Improving counting conditions</h3>
     <p>Use a fixed camera, good lighting, clear subjects, and limited obstruction. Keep the line away from frame edges. Crossing detection follows the bottom-center of each object's box, so avoid a position where only part of the object is visible. Crowds, small distant subjects, low light, and camera movement can cause missed or repeated counts. Check important results manually.</p>
     <p>The app is not intended for traffic enforcement, identification, or safety decisions. It does not provide license-plate recognition, network-camera connections, or continuous background monitoring.</p>
 
     <h3>Camera access</h3>
-    <p>Allow camera access for AI Real-Time Counter in iPhone Settings and check that the camera is available. You can also use Import video. Counting pauses when the app leaves the foreground or camera capture is interrupted. Return and tap 继续统计 (Resume); the app does not reconstruct crossings during a gap.</p>
+    <p>Allow camera access for AI Real-Time Counter in iPhone Settings and check that the camera is available. You can also use Import video. Counting pauses when the app leaves the foreground or camera capture is interrupted. Return and tap Resume; the app does not reconstruct events during a gap.</p>
 
     <h3>Slow video import or analysis</h3>
     <p>The system may need to download an iCloud video first. Wait for it to finish and keep enough free storage for a video copy. Analysis time depends on video length and device performance. If the device becomes hot, pause and allow it to cool. Analysis runs in the foreground. The analysis copy is cleaned up after the screen closes; the original in Photos is not deleted.</p>
 
     <h3>Export and deletion</h3>
-    <p>CSV includes category/direction minute totals, crossing events, and camera interruptions, not original footage. In version 1.0.1, headings follow the app language (English or Simplified Chinese). Version 1.0 uses Simplified Chinese. Minute indices start at 0. Open it with a spreadsheet tool that supports UTF-8.</p>
+    <p>CSV includes category/direction minute totals, count events, counting settings, and camera interruptions, not original footage. Version 1.0.2 records settings such as areas, edge groups, and directions, and distinguishes region-transit events. Older sessions retain their original meaning. In version 1.0.1 and later, headings follow the app language (English or Simplified Chinese). Minute indices start at 0. Open it with a spreadsheet tool that supports UTF-8.</p>
     <p>Use Edit or swipe to delete a session in History. Deletion does not recall exported CSV files; delete those copies in Files or at the selected recipient. See the <a href="flowcount-privacy.html">privacy policy</a> for details.</p>
 
     <h3>Purchase and contact</h3>
