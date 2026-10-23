@@ -3,157 +3,121 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>XM LLC | xSimple VPN Privacy Policy</title>
+    <title>xSimple VPN Privacy Policy | XM LLC</title>
+    <meta name="description" content="Learn how xSimple VPN handles account, device, subscription and connection data, storage and deletion choices, and how to request account deletion." />
+    <link rel="canonical" href="https://www.xmaillc.com/xsimple-privacy.html" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="xSimple VPN Privacy Policy | XM LLC" />
+    <meta property="og:description" content="Data handling, VPN diagnostics, payments and deletion options for xSimple VPN." />
+    <meta property="og:url" content="https://www.xmaillc.com/xsimple-privacy.html" />
+    <meta name="twitter:card" content="summary" />
+    <link rel="icon" type="image/png" href="assets/images/xsimple-vpn.png" />
     <link rel="stylesheet" href="assets/css/style.css" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
-      rel="stylesheet"
-    />
+    <style>
+      .privacy-page .policy-content { max-width: 760px; }
+      .privacy-page .policy-section { margin-top: 2.5rem; }
+      .privacy-page .policy-section h2 { font-size: 1.5rem; margin-bottom: 1rem; }
+      .privacy-page .policy-section p, .privacy-page .policy-section li { overflow-wrap: anywhere; }
+      .privacy-page .policy-section li + li { margin-top: .7rem; }
+      .privacy-page .policy-section a, .privacy-page .privacy-contact a { text-decoration: underline; }
+      .privacy-page .privacy-contact { overflow-wrap: anywhere; }
+      .privacy-page .skip-link { position: absolute; top: -100px; left: 1rem; z-index: 20; background: white; padding: .75rem; }
+      .privacy-page .skip-link:focus { top: 1rem; }
+      .privacy-page #policy { scroll-margin-top: 8rem; }
+    </style>
   </head>
   <body class="privacy-page">
+    <a class="skip-link" href="#policy">Skip to privacy policy</a>
     <header class="top-bar">
       <div class="container">
-        <div class="logo">XM LLC</div>
+        <a class="logo" href="index.html">XM LLC</a>
         <nav class="main-nav" aria-label="Primary">
-          <a href="products.html">Products</a>
-          <a href="index.html#solutions">Solutions</a>
-          <a href="index.html#platform">Platform</a>
-          <a href="index.html#about">About</a>
-          <a href="index.html#leadership">Leadership</a>
-          <a href="index.html#compliance">Compliance</a>
-          <a href="index.html#privacy">Privacy</a>
-          <a href="index.html#contact">Contact</a>
+          <a href="xsimple.html">xSimple VPN</a>
+          <a href="products.html">All products</a>
+          <a href="mailto:xm910llc@gmail.com">Support</a>
         </nav>
-        <a class="cta" href="index.html#contact">Schedule a Consultation</a>
       </div>
     </header>
 
     <main>
-      <section class="privacy-hero">
-        <div class="container">
-          <p class="eyebrow">Product Privacy Report</p>
-          <h1>xSimple VPN Privacy Policy</h1>
-          <p>
-            xSimple VPN delivers hardened, policy-aware remote access for field
-            teams. The controls below outline how tunnel metadata, device
-            fingerprints, and user activity are governed to maintain privacy
-            across regulated environments.
-          </p>
+      <section class="privacy-hero" aria-labelledby="policy-title">
+        <div class="container policy-content">
+          <p class="eyebrow">xSimple VPN</p>
+          <h1 id="policy-title">Privacy Policy</h1>
+          <p>This policy explains how XM LLC handles information for the xSimple VPN apps and the account, subscription and VPN services that support them.</p>
           <div class="hero-actions">
-            <a class="btn primary" href="#policy">Jump to Policy</a>
-            <a class="btn secondary" href="index.html#privacy">Back to XM LLC</a>
+            <a class="btn primary" href="#policy">Read the policy</a>
+            <a class="btn secondary" href="mailto:xm910llc@gmail.com?subject=xSimple%20VPN%20privacy">Contact us</a>
           </div>
         </div>
       </section>
 
-      <section class="legal privacy-details" id="policy">
-        <div class="container">
-          <p class="effective-date">
-            Effective: May 1, 2024 · Next independent review: November 2024
-          </p>
-          <div class="policy-grid">
-            <article class="policy">
-              <h3>Data Captured</h3>
-              <ul>
-                <li>
-                  Device posture signals (OS version, patch level, EDR status)
-                  necessary to enforce zero-trust rules.
-                </li>
-                <li>
-                  Session metadata: tunnel start/stop time, assigned gateway, and
-                  service tags. Payload content is never inspected.
-                </li>
-                <li>
-                  Optional location hints derived from gateway selection for
-                  latency optimization; precise GPS is never collected.
-                </li>
-              </ul>
-            </article>
-            <article class="policy">
-              <h3>Processing &amp; Retention</h3>
-              <ul>
-                <li>
-                  Metadata streams are encrypted (TLS 1.3) end to end and stored
-                  in customer-dedicated clusters.
-                </li>
-                <li>
-                  Session logs roll off after 90 days unless preserved for an
-                  active investigation approved by the customer.
-                </li>
-                <li>
-                  Device fingerprints are hashed with rotating salts to prevent
-                  cross-environment correlation.
-                </li>
-              </ul>
-            </article>
-            <article class="policy">
-              <h3>Security &amp; Access</h3>
-              <ul>
-                <li>
-                  Admin access requires hardware-backed MFA and is fully
-                  audited; support staff view redacted metadata only.
-                </li>
-                <li>
-                  Forward secrecy enforced through short-lived certificates;
-                  compromised keys cannot decrypt historical sessions.
-                </li>
-                <li>
-                  Continuous monitoring detects anomalous tunnel creation, with
-                  automated containment workflows.
-                </li>
-              </ul>
-            </article>
-            <article class="policy">
-              <h3>Customer Controls</h3>
-              <ul>
-                <li>
-                  Customers define retention policies, approved geographies, and
-                  escalation contacts inside the admin console.
-                </li>
-                <li>
-                  On-demand export packages include signed hashes for tamper
-                  evidence and SIEM ingestion.
-                </li>
-                <li>
-                  XM provides quarterly privacy attestations aligned to FedRAMP
-                  Moderate and CJIS expectations.
-                </li>
-              </ul>
-            </article>
-          </div>
-          <div class="privacy-contact">
-            <p>
-              Questions about this policy? Email
-              <a href="mailto:privacy@xm-llc.com">privacy@xm-llc.com</a> or call
-              (202) 555-0184 to reach the XM privacy office in Milford,
-              Connecticut.
-            </p>
-          </div>
+      <section class="legal privacy-details" id="policy" aria-label="Privacy policy details">
+        <div class="container policy-content">
+          <p class="effective-date">Updated October 22, 2026</p>
+
+          <section class="policy-section" aria-labelledby="information-title">
+            <h2 id="information-title">Information used to provide the service</h2>
+            <ul>
+              <li><strong>Account information.</strong> If you create an account, we process your email address, a password hash and account creation information to authenticate you and provide account access.</li>
+              <li><strong>Device and access information.</strong> We process a hashed device identifier, account and device-session timestamps, access status and expiry. Device records support service access and trial-abuse prevention.</li>
+              <li><strong>VPN configuration.</strong> Provisioning a connection uses tunnel configuration such as a public VPN key, an assigned tunnel IP address and the selected service location.</li>
+              <li><strong>Purchase information.</strong> We process subscription status, expiry and purchase identifiers, including Apple's original transaction identifier, to validate and restore access.</li>
+            </ul>
+          </section>
+
+          <section class="policy-section" aria-labelledby="diagnostics-title">
+            <h2 id="diagnostics-title">VPN traffic and operational diagnostics</h2>
+            <p>VPN servers process your network traffic and its destination addresses to provide the connection you request. Connection diagnostics can include source and destination IP addresses and timestamps.</p>
+            <p>Our service API records request time, HTTP method, API path, response status, client IP address, user-agent and request duration. Error diagnostics can also contain account identifiers, assigned tunnel addresses, service locations and error details.</p>
+            <p>We use these records to operate the service, investigate connection problems, validate access and protect the service against misuse.</p>
+          </section>
+
+          <section class="policy-section" aria-labelledby="payments-title">
+            <h2 id="payments-title">Payments and service providers</h2>
+            <p>On iPhone and iPad, Apple processes App Store purchases. We receive the purchase and entitlement information needed to provide access; Apple does not provide us with your payment-card details.</p>
+            <p>Where the Mac app offers web billing, checkout and subscription management use Stripe's hosted pages. Stripe processes the payment information you enter, and the service uses billing identifiers and subscription status to manage access.</p>
+            <p>The infrastructure providers that host our account and VPN services process data needed to deliver those services. Apple and Stripe also handle information under their own privacy policies: <a href="https://www.apple.com/legal/privacy/">Apple Privacy Policy</a> and <a href="https://stripe.com/privacy">Stripe Privacy Policy</a>.</p>
+          </section>
+
+          <section class="policy-section" aria-labelledby="retention-title">
+            <h2 id="retention-title">Storage and retention</h2>
+            <p>We retain information for account and service operation, security, troubleshooting and entitlement validation. Account, device, purchase and operational records can have different retention needs. This policy does not specify a fixed automatic-deletion period.</p>
+            <p>A hashed device identifier can still be associated with your service access. We treat device and connection records as service information even when they do not contain your name.</p>
+          </section>
+
+          <section class="policy-section" aria-labelledby="deletion-title">
+            <h2 id="deletion-title">Account deletion and your choices</h2>
+            <p>You can use Delete Account while signed in to the app, or contact us at <a href="mailto:xm910llc@gmail.com?subject=xSimple%20VPN%20data%20request">xm910llc@gmail.com</a> to request access, correction or deletion of your data. Please identify xSimple VPN and the account or device-related issue so we can locate the relevant records.</p>
+            <p>Account deletion removes the account, associated VPN peers and account sessions. Separate device, subscription and security records may remain after account deletion. Contact us about those records or if you used the service without an account.</p>
+            <p>Deleting your account or uninstalling the app does not cancel an Apple subscription. Manage or cancel an iOS subscription in your Apple Account subscription settings.</p>
+          </section>
+
+          <section class="policy-section" aria-labelledby="contact-title">
+            <h2 id="contact-title">Contact and policy updates</h2>
+            <p>XM LLC operates xSimple VPN. Send privacy questions and data requests to <a href="mailto:xm910llc@gmail.com">xm910llc@gmail.com</a>. We will post changes to this policy on this page and update the date above.</p>
+          </section>
+
+          <section class="policy-section" lang="zh-Hans" aria-labelledby="chinese-summary-title">
+            <h2 id="chinese-summary-title">中文摘要</h2>
+            <p>xSimple VPN 由 XM LLC 运营。创建账号时，我们处理邮箱、密码哈希及账号信息；服务还使用设备标识哈希、会话时间、VPN 公钥和分配的 IP 地址、订阅状态及交易标识来提供连接、验证权限和处理故障。</p>
+            <p>连接诊断可能包含来源和目标 IP 地址及时间。服务 API 日志包含请求时间、方法、路径、状态码、客户端 IP、用户代理和耗时。iPhone 与 iPad 购买由 Apple 处理，Mac 网页支付由 Stripe 处理。</p>
+            <p>数据因账号与服务运行、安全及订阅验证需要而保留，本文不承诺固定的自动清除期限。删除账号会移除账号、关联 VPN 配置和账号会话，但独立的设备、订阅及安全记录可能仍保留。删除账号不会取消 Apple 订阅。数据访问、更正、删除或隐私问题，请联系 <a href="mailto:xm910llc@gmail.com">xm910llc@gmail.com</a>。</p>
+          </section>
         </div>
       </section>
     </main>
 
     <footer class="site-footer">
       <div class="container">
-        <div>
-          <strong>XM LLC</strong>
-          <p>Applied AI for regulated organizations.</p>
-        </div>
+        <div><strong>XM LLC</strong><p>xSimple VPN</p></div>
         <div class="footer-links">
-          <a href="index.html#privacy">Privacy Policy</a>
-          <a href="index.html#terms">Terms of Service</a>
-          <a href="mailto:hello@xm-llc.com">Support</a>
+          <a href="xsimple.html">App and downloads</a>
+          <a href="https://www.apple.com/legal/internet-services/itunes/dev/stdeula/">Apple standard app terms</a>
+          <a href="mailto:xm910llc@gmail.com">Support</a>
         </div>
-        <div class="footer-meta">
-          <p>© <span id="year"></span> XM LLC. All rights reserved.</p>
-          <p>CAGE Code: 8XM12</p>
-        </div>
+        <div class="footer-meta"><p>&copy; 2026 XM LLC. All rights reserved.</p></div>
       </div>
     </footer>
-    <script>
-      document.getElementById("year").textContent = new Date().getFullYear();
-    </script>
   </body>
 </html>

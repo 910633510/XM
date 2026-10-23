@@ -3,3 +3,4 @@ Allow: /
 
 Sitemap: https://www.xmaillc.com/sitemap.xml
 Sitemap: https://www.xmaillc.com/sitemap-china-voice.xml
+Sitemap: https://www.xmaillc.com/xsimple-sitemap.xml
