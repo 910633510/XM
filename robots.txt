@@ -2,3 +2,4 @@ User-agent: *
 Allow: /
 
 Sitemap: https://www.xmaillc.com/sitemap.xml
+Sitemap: https://www.xmaillc.com/sitemap-china-voice.xml
