@@ -1,0 +1,88 @@
+/* English Duel pages only; the shared privacy styles remain unchanged. */
+.ed-page { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif; }
+.ed-page .xm-eyebrow { letter-spacing: .08em; }
+.ed-hero { display: grid; grid-template-columns: 1.15fr .85fr; gap: 64px; align-items: center; padding-block: 80px 88px; }
+.ed-hero h1 { margin-top: 22px; font-size: clamp(35px, 4.2vw, 56px); font-weight: 600; line-height: 1.3; letter-spacing: -.035em; }
+.ed-hero h1 span { color: #08735b; }
+.ed-lead { max-width: 640px; margin-top: 24px !important; color: #647068; font-size: 18px; line-height: 1.9; }
+.ed-platform { margin-top: 22px !important; color: #08735b; font-size: 13px; }
+.ed-caption { margin-top: 16px !important; font-size: 12px; line-height: 1.8; color: #647068; }
+.ed-hero-art { padding: 34px; background: #f3f6ee; border: 1px solid #e0e8db; border-radius: 24px; text-align: center; }
+.ed-word-pair { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; padding-block: 30px; }
+.ed-word-pair span { display: grid; min-height: 110px; place-items: center; color: #08735b; background: #fff; border: 2px solid #cdddc5; border-radius: 18px; font-size: 31px; font-weight: 600; box-shadow: 0 5px 0 #dce6d6; }
+.ed-hero-art > p { color: #647068; font-size: 14px; }
+.ed-mode-pills { display: flex; justify-content: center; gap: 8px; flex-wrap: wrap; margin-top: 26px; }
+.ed-mode-pills span { padding: 5px 10px; font-size: 11px; color: #49634f; border: 1px solid #d7e2d0; border-radius: 20px; }
+.ed-section { padding-block: 64px; }
+.ed-section > .xm-eyebrow { margin-bottom: 16px; }
+.ed-tinted { background: #f6f7f4; border-block: 1px solid #e4e9e5; }
+.ed-number { display: block; margin-bottom: 16px; color: #718c76; font-size: 12px; letter-spacing: .1em; }
+.ed-page .xm-feature h3 { font-size: 21px; }
+.ed-page .xm-feature p { line-height: 1.9; }
+.ed-guide-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
+.ed-guide-card { display: flex; flex-direction: column; padding: 28px; background: #fff; border: 1px solid #e0e5df; border-radius: 12px; }
+.ed-guide-card:hover { text-decoration: none !important; border-color: #8caa94; }
+.ed-guide-card h3 { font-size: 20px; line-height: 1.5; margin-block: 18px 12px; }
+.ed-guide-card p { font-size: 14px; color: #647068; line-height: 1.9; margin-bottom: 14px; }
+.ed-guide-card .xm-text-link { margin-top: auto; }
+.ed-platforms { display: grid; grid-template-columns: .8fr 1.2fr; gap: 64px; }
+.ed-platforms .xm-section-title { margin-top: 16px; }
+.ed-text { margin-top: 22px !important; color: #647068; line-height: 1.9; }
+.ed-platform-cards { display: grid; gap: 24px; }
+.ed-platform-cards article { border: 1px solid #e0e5df; border-radius: 12px; padding: 28px; }
+.ed-platform-cards h3 { font-size: 21px; }
+.ed-platform-cards p { font-size: 14px; margin-block: 14px 20px; color: #647068; line-height: 1.9; }
+.ed-faq { border-top: 1px solid #e4e9e5; padding-top: 36px; }
+.ed-faq h2 { margin-bottom: 24px; }
+.ed-faq details { border-top: 1px solid #e4e9e5; padding-block: 18px; }
+.ed-faq summary { cursor: pointer; font-size: 16px; font-weight: 550; }
+.ed-faq summary:focus-visible { outline: 3px solid #a34e25; outline-offset: 6px; }
+.ed-faq details p { max-width: 800px; color: #647068; line-height: 1.9; margin-top: 16px; }
+.ed-faq details a, .ed-article-body a { color: #07664f; text-decoration: underline; text-underline-offset: 4px; }
+.ed-screenshots { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 36px; max-width: 900px; margin: 36px auto 0; }
+.ed-screenshots figure { min-width: 0; margin: 0; }
+.ed-screenshots img { width: 100%; height: auto; display: block; border: 1px solid #e2dfd4; border-radius: 20px; background: #fffaee; }
+.ed-screenshots figcaption { text-align: center; color: #647068; font-size: 13px; margin-top: 16px; }
+.ed-breadcrumb { padding-top: 30px; display: flex; gap: 12px; color: #647068; font-size: 12px; }
+.ed-article { max-width: 800px; }
+.ed-article-header { padding-block: 54px 40px; border-bottom: 1px solid #e4e9e5; }
+.ed-article h1 { margin-top: 18px; font-size: clamp(30px,4vw,44px); line-height: 1.5; letter-spacing: -.025em; }
+.ed-article-body section { margin-block: 40px; }
+.ed-article-body h2 { font-size: 23px; line-height: 1.6; font-weight: 600; margin-bottom: 18px; }
+.ed-article-body p, .ed-article-body li { color: #526258; font-size: 16px; line-height: 2; }
+.ed-article-body p + p { margin-top: 18px; }
+.ed-article-body ol, .ed-article-body ul { padding-left: 24px; }
+.ed-article-body li { margin-bottom: 14px; padding-left: 5px; }
+.ed-article-body strong { font-weight: 600; color: #24352d; }
+.ed-note { background: #f3f6ee; padding: 22px 26px; border-left: 3px solid #08735b; margin-bottom: 20px; }
+.ed-next { margin-block: 50px 64px; padding: 32px; background: #f3f6ee; border-radius: 12px; }
+.ed-next h2 { font-size: 25px; line-height: 1.5; }
+.ed-next > p { color: #647068; margin-top: 16px; }
+.ed-next > .xm-text-link { margin-top: 18px; }
+@media (max-width: 900px) {
+  .ed-hero { gap: 30px; }
+  .ed-hero-art { padding: 20px; }
+  .ed-word-pair span { font-size: 26px; min-height: 95px; }
+  .ed-platforms { grid-template-columns: 1fr; gap: 28px; }
+  .ed-platform-cards { grid-template-columns: repeat(2,minmax(0,1fr)); }
+  .ed-guide-card { padding: 22px; }
+}
+@media (max-width: 650px) {
+  .ed-hero { grid-template-columns: 1fr; padding-block: 42px; gap: 30px; }
+  .ed-hero h1 { font-size: clamp(31px,8.7vw,45px); }
+  .ed-lead { font-size: 16px; margin-top: 20px !important; }
+  .ed-hero-art { padding: 14px 26px 26px; }
+  .ed-word-pair span { min-height: 100px; }
+  .ed-section { padding-block: 42px; }
+  .ed-guide-grid, .ed-platform-cards { grid-template-columns: 1fr; }
+  .ed-screenshots { gap: 12px; }
+  .ed-screenshots img { border-radius: 10px; }
+  .ed-screenshots figcaption { font-size: 11px; line-height: 1.6; }
+  .ed-article-header { padding-block: 35px 30px; }
+  .ed-article-body h2 { font-size: 21px; }
+  .ed-article-body p, .ed-article-body li { font-size: 15px; }
+  .ed-next { padding: 24px; }
+  .ed-next h2 { font-size: 23px; }
+  .ed-note { padding: 18px; }
+  .ed-page .xm-actions { gap: 12px 20px; }
+}

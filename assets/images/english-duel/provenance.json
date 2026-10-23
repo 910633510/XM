@@ -1,0 +1,32 @@
+{
+  "version": "1.3",
+  "build": "4",
+  "sourceManifest": "Landuo/output/ios-wechat-parity-release/captures/manifest.json",
+  "processing": "Proportional resize to width 600, WebP quality 86; no UI edits or cropping.",
+  "images": [
+    {
+      "source": "captures/zh-Hans-01-journey.png",
+      "sourceSha256": "dedfe0a7a7c268308b0730a9886b7577d78412ec33933668f36b3ea25a69b6d9",
+      "web": "assets/images/english-duel/01-journey.webp",
+      "webSha256": "58bddf4de41590c6c7aec3487fcf0854e694bf5ac53e171e176c14389fe0de28",
+      "width": 600,
+      "height": 1304
+    },
+    {
+      "source": "captures/zh-Hans-02-preview.png",
+      "sourceSha256": "aeb271a755ce7cde4bc9a6ad97012ec0423471354a061f3f0746fef1df2c8d46",
+      "web": "assets/images/english-duel/02-preview.webp",
+      "webSha256": "9e24da38d7b99347c305a3ba0dc4c9833eeab379ea0f91190c5deb27808da391",
+      "width": 600,
+      "height": 1304
+    },
+    {
+      "source": "captures/zh-Hans-03-board.png",
+      "sourceSha256": "993faa30bbca167d7b06a68f733d0528ec71fa3aaa9528c9bf236a5917598cda",
+      "web": "assets/images/english-duel/03-board.webp",
+      "webSha256": "0aa87add0330332805bd65a12062aa32e82cd55db147ff635efbe90b8a39b965",
+      "width": 600,
+      "height": 1304
+    }
+  ]
+}
