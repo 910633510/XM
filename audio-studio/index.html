@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#061718">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://accounts.google.com/gsi/client; style-src 'self' 'unsafe-inline' https://accounts.google.com/gsi/style; connect-src 'self' https://api-voiceclone.xmaillc.com https://accounts.google.com/gsi/; frame-src https://accounts.google.com; img-src 'self' data:; media-src 'self' blob:; object-src 'none'; base-uri 'none'; form-action 'self' https://accounts.google.com">
+  <meta name="description" content="Create voiceovers, song covers and original music in Xsimple Audio Studio. Choose a voice, shape your draft, and keep your creations in your account.">
+  <title>Xsimple Audio Studio | XM LLC</title>
+  <link rel="canonical" href="https://www.xmaillc.com/audio-studio/">
+  <link rel="stylesheet" href="assets/studio.css">
+</head>
+<body>
+  <a class="skip-link" href="#workspace">Skip to workspace</a>
+  <header id="app-header" class="app-header"></header>
+  <nav id="sidebar" class="sidebar" aria-label="Studio navigation"></nav>
+  <div hidden aria-hidden="true"><span id="clone"></span><span id="voices"></span><span id="cover"></span><span id="music"></span><span id="assistant"></span><span id="creations"></span><span id="account"></span></div>
+  <main id="workspace" class="workspace" tabindex="-1" aria-busy="true">
+    <div class="boot-state"><span class="brand-wave" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span><h1>Xsimple Audio Studio</h1><p>Opening your studio…</p></div>
+  </main>
+  <aside id="jobs-panel" class="jobs-panel" aria-label="Generation tasks" hidden></aside>
+  <footer id="audio-player" class="audio-player" hidden>
+    <div class="player-description"><span class="player-mark" aria-hidden="true">♪</span><div><strong id="player-title"></strong><small id="player-detail"></small></div></div>
+    <audio id="player" controls preload="none"></audio>
+    <button id="player-close" class="icon-button" type="button" aria-label="Close player">×</button>
+  </footer>
+  <div id="notice" class="notice" role="status" aria-live="polite" hidden></div>
+  <dialog id="voice-dialog" class="studio-dialog"></dialog>
+  <noscript><div class="noscript-message">This workspace needs JavaScript for recording, signing in, and creating audio. You can still visit <a href="../xvoice.html">Xsimple Voice Studio downloads</a>.</div></noscript>
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>

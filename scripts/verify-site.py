@@ -150,8 +150,10 @@ def verify(root: Path, baseline: str) -> int:
         path for path in original_paths
         if "privacy" in Path(path).name and Path(path).suffix in {".html", ".md"}
     }
-    if len(privacy_paths) != 12:
-        errors.append(f"baseline has {len(privacy_paths)} privacy files; expected 12")
+    # Newer approved baselines contain additional product policies. Preserve all
+    # of them instead of rejecting a baseline merely because the collection grew.
+    if len(privacy_paths) < 12:
+        errors.append(f"baseline has {len(privacy_paths)} privacy files; expected at least 12")
     protected = privacy_paths | {
         "assets/css/style.css", "xsimple.html", "assets/css/xsimple-download.css",
         "xsimple-appcast.xml", "app-ads.txt", "CNAME",
