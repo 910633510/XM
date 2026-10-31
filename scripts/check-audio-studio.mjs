@@ -27,6 +27,51 @@ for(const language of ['en','zh']){lang=language;for(const route of ['Clone','Vo
 assert.equal(new Set(voices.map(v=>v.id)).size,voices.length);
 assert.equal(T.requestID('speech',{text:'a'}),T.requestID('speech',{text:'a'}));assert.notEqual(T.requestID('speech',{text:'a'}),T.requestID('speech',{text:'b'}));
 assert(T.validMusic({lyrics:'',style:'Ambient',generation_mode:'instrumental',bpm:90,duration:12}));assert(!T.validMusic({lyrics:'',style:'Pop',generation_mode:'song',bpm:90,duration:12}));
+// Exercise the actual document click listener using the action rendered on each
+// button. Calling submitJob directly would miss route/action name collisions.
+function clickRenderedButton(html,action) {
+  const tag=html.match(new RegExp(`<button\\b[^>]*data-action="${action}"[^>]*>`))?.[0];
+  assert(tag,`Missing rendered button for ${action}`);
+  const target={dataset:{action},disabled:/\sdisabled(?:\s|>)/.test(tag)};
+  let prevented=false;
+  const result=events.click({target:{closest:selector=>selector==='[data-action]'?target:null},preventDefault(){prevented=true;}});
+  if(!target.disabled)assert(prevented,'The action should be handled by the document click listener');
+  return result;
+}
+const originalRequest=context.request;
+for(const [mode,action,path] of [['music','generate-music','/music'],['cover','generate-cover','/covers']]) {
+  T.state.forms.music={lyrics:'Test lyrics',style:'Acoustic pop',language:'en',bpm:100,duration:20,seed:4,generation_mode:'song'};
+  T.state.forms.cover={voice_id:voices[0].id,seconds:30};
+  T.state.coverFile=new File(['test audio'],'example.wav',{type:'audio/wav'});
+  let finishPost;const before=requests.filter(r=>r.path===path&&r.method==='POST').length;
+  context.request=(url,options={})=>{
+    if(url===path&&options.method==='POST'){requests.push({path:url,...options});return new Promise(resolve=>finishPost=resolve);}
+    if(url===`/jobs/event-${mode}`)return Promise.resolve({id:`event-${mode}`,kind:mode,status:'paused',progress:{stage:'paused'}});
+    return originalRequest(url,options);
+  };
+  const html=mode==='music'?T.renderMusic():T.renderCover();
+  const running=clickRenderedButton(html,action);
+  assert.equal(requests.filter(r=>r.path===path&&r.method==='POST').length,before+1,`${action} must POST ${path}, not just navigate`);
+  assert(T.state.busy.has(mode),`${action} must use the existing ${mode} busy key`);
+  const busyHTML=mode==='music'?T.renderMusic():T.renderCover();
+  assert(new RegExp(`data-action="${action}"[^>]* disabled`).test(busyHTML));
+  await clickRenderedButton(html,action); // A stale, still-enabled button cannot submit twice.
+  assert.equal(requests.filter(r=>r.path===path&&r.method==='POST').length,before+1);
+  const sent=requests.filter(r=>r.path===path&&r.method==='POST').at(-1);
+  if(mode==='music'){assert(sent.body.request_id);assert.equal(sent.body.generation_mode,'song');}
+  else {assert(sent.body instanceof FormData);assert(sent.body.get('request_id'));assert.equal(sent.body.get('voice_id'),voices[0].id);assert.equal(sent.body.get('song').name,'example.wav');}
+  finishPost({id:`event-${mode}`,kind:mode,status:'queued',progress:{stage:'queued'}});
+  await running;assert(!T.state.busy.has(mode));
+}
+context.request=originalRequest;
+const initialProject=T.state.currentProject;
+T.state.currentProject=null;T.state.busy.add('project-plan');
+const pendingAssistant=T.renderAssistant();
+assert(/data-action="save-project"[^>]* disabled/.test(pendingAssistant));
+assert(/<select[^>]*id="assistant-language"[^>]* disabled/.test(pendingAssistant));
+assert(/data-key="consent"[^>]* disabled/.test(pendingAssistant));
+T.state.busy.delete('project-plan');T.state.currentProject=initialProject;
+console.log('PASS: rendered music/cover buttons invoke the actual click listener and POST their endpoints; busy keys prevent double submission; initial assistant controls lock during submission.');
 T.state.currentProject={...T.state.currentProject,mode:'music',plan:{mode:'music',title:'Song',language:'en',roles:[],segments:[],music:{lyrics:'Words',style:'Pop',bpm:90,duration:17,generation_mode:'song'}}};
 const musical=T.renderAssistant();assert(musical.includes('value="17" selected'));snapshots.push({name:'music-project-duration17',html:musical});
 await T.submitJob('speech','/speech',{text:'Example',language:'en',voice_id:voices[0].id,speed:1,pitch:0,volume:1});
