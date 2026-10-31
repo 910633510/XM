@@ -37,10 +37,10 @@ export async function request(path, { method = 'GET', body, signal, blob = false
   if (signal?.aborted) abort();
   else signal?.addEventListener('abort', abort, { once: true });
   const timeout = setTimeout(() => { timedOut = true; controller.abort(); }, body instanceof FormData || blob ? 300000 : 45000);
+  try {
   let response;
   try { response = await fetch(apiURL(path), { method, headers, body, credentials: 'include', signal: controller.signal, cache: 'no-store' }); }
   catch (error) { if (timedOut) throw new StudioError('WEB_TIMEOUT'); if (error.name === 'AbortError') throw error; throw new StudioError('WEB_CONNECTION'); }
-  finally { clearTimeout(timeout); signal?.removeEventListener('abort', abort); }
   if (generation !== sessionGeneration && !allowAnonymous) throw new StudioError('WEB_SESSION_CHANGED');
   if (!response.ok) {
     let value = {}; try { value = await response.json(); } catch {}
@@ -49,7 +49,9 @@ export async function request(path, { method = 'GET', body, signal, blob = false
     throw new StudioError(code, response.status);
   }
   if (response.status === 204) return null;
-  return blob ? response.blob() : response.json();
+  try { return blob ? await response.blob() : await response.json(); }
+  catch (error) { if (timedOut) throw new StudioError('WEB_TIMEOUT'); throw error; }
+  } finally { clearTimeout(timeout); signal?.removeEventListener('abort', abort); }
 }
 
 export function errorMessage(error) {

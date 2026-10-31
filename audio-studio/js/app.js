@@ -39,7 +39,7 @@ const projectHasActiveJob = id => !!id&&[...state.jobs.values()].some(job=>activ
 const busy = key => state.busy.has(key);
 const disabled = condition => condition ? ' disabled' : '';
 const option = (value,label,current) => `<option value="${esc(value)}"${String(value)===String(current)?' selected':''}>${esc(label)}</option>`;
-const button = (action,label,{id='',tone='secondary',isDisabled=false,title='',extra=''}={}) => `<button type="button" class="button ${tone}" data-action="${action}"${id?` data-id="${esc(id)}"`:''}${title?` title="${esc(title)}"`:''}${disabled(isDisabled)} ${extra}>${esc(label)}</button>`;
+const button = (action,label,{id='',tone='secondary',isDisabled=false,title='',extra=''}={}) => `<button type="button" class="button ${tone}" data-action="${action}"${id?` data-id="${esc(id)}"`:''}${title?` title="${esc(title)}" aria-label="${esc(title)}"`:''}${disabled(isDisabled)} ${extra}>${esc(label)}</button>`;
 function formField(form,key,label,{type='text',min,max,step,placeholder='',rows=0,limit,choices=null,value,isDisabled=false}={}) {
   const current = value ?? state.forms[form]?.[key] ?? '';
   const attrs = `data-form="${form}" data-key="${key}" id="${form}-${key}"${disabled(isDisabled)}`;
