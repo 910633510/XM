@@ -1,4 +1,4 @@
-import { t } from './i18n.js';
+import { t } from './i18n.js?v=20261030-6';
 
 export const API_BASE = 'https://api-voiceclone.xmaillc.com/web-studio/api';
 let csrfToken = null;

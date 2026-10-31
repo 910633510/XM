@@ -1,6 +1,6 @@
-import { request, setCSRFToken, onAuthExpired, errorMessage, StudioError, API_BASE } from './api.js';
-import { t, getLanguage, setLanguage, dateLabel, durationLabel } from './i18n.js';
-import { setDraftOwner, readDrafts, saveDrafts } from './storage.js';
+import { request, setCSRFToken, onAuthExpired, errorMessage, StudioError, API_BASE } from './api.js?v=20261030-6';
+import { t, getLanguage, setLanguage, dateLabel, durationLabel } from './i18n.js?v=20261030-6';
+import { setDraftOwner, readDrafts, saveDrafts } from './storage.js?v=20261030-6';
 
 const $ = (selector, root = document) => root.querySelector(selector);
 const esc = (value = '') => String(value ?? '').replace(/[&<>"']/g, c => ({ '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;' }[c]));
