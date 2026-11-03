@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Xsimple Audio Studio Privacy Policy | XM LLC</title>
-    <meta name="description" content="How Xsimple Audio Studio handles audio, lyrics, purchases, server processing, retention, and deletion requests." />
+    <meta name="description" content="How Xsimple Audio Studio for iOS handles audio, creative drafts, OpenAI text planning, purchases, retention, and deletion requests." />
     <link rel="stylesheet" href="assets/css/style.css" />
     <style>
       .studio-policy .container { max-width: 960px; }
@@ -29,7 +29,6 @@
     </style>
   </head>
   <body class="privacy-page studio-policy">
-    <!-- Release candidate prepared locally. Publication is a separate action. -->
     <header class="top-bar">
       <div class="container">
         <a class="logo" href="index.html">XM LLC</a>
@@ -46,7 +45,7 @@
           <p class="eyebrow">Product Privacy Policy</p>
           <h1 id="policy-title">Xsimple Audio Studio</h1>
           <p>Privacy Policy · 隐私政策</p>
-          <p>Last updated: October 15, 2026 · 更新日期：2026 年 10 月 15 日</p>
+          <p>Last updated: November 3, 2026 · 更新日期：2026 年 11 月 3 日</p>
           <nav class="language-links" aria-label="Policy language">
             <a href="#english" lang="en">English</a>
             <a href="#chinese" lang="zh-Hans">简体中文</a>
@@ -57,12 +56,13 @@
       <section class="legal privacy-details" id="english" lang="en" aria-labelledby="english-title">
         <div class="container">
           <h2 class="section-heading" id="english-title">Privacy Policy</h2>
-          <p class="policy-summary">XM LLC provides Xsimple Audio Studio. Audio generation uses our server services and requires an internet connection. You do not need an app account or your own Mac. Deleting a local creation does not delete its server copies.</p>
+          <p class="policy-summary">XM LLC provides Xsimple Audio Studio for iOS. Audio generation uses our server services and requires an internet connection. If you choose to use the AI Creative Assistant and agree to its disclosure, text planning uses OpenAI. You do not need an iOS app account or your own Mac. Deleting a local creation does not delete its server copies.</p>
           <div class="policy-grid">
             <article class="policy">
               <h3>1. Audio and text you choose to use</h3>
               <p>When you tap Record, the app requests microphone permission to capture a reference voice. You can instead import a recording from Files. Saved reference voices and creations are kept on your device for reuse, playback and export.</p>
               <ul>
+                <li><strong>AI Creative Assistant:</strong> after you tap “Agree and create a draft,” your brief, script or existing draft, creative settings, language, selected voice names and identifiers, and any revision instructions are sent through our service to OpenAI to prepare or revise a voiceover, music or audio-scene plan. Reference recordings, audio files, local file paths, purchase receipts and installation credentials are not included in the planning input sent to OpenAI.</li>
                 <li><strong>Voice cloning and text-to-speech:</strong> the selected reference recording, text, language and synthesis settings are sent to our voice service to generate speech.</li>
                 <li><strong>Song covers:</strong> the imported song, selected reference voice and requested duration are sent to our cover service. Processing creates the cover and associated audio files, such as separated vocals and accompaniment.</li>
                 <li><strong>Music generation (songs, Rap and instrumentals):</strong> your selected generation mode, musical style, language setting, tempo, duration, request identifier and generation seed are sent to our music service. Songs and Rap also send your lyrics to generate vocals and music. In Instrumental mode, the app sends no lyric text and the service clears any supplied lyrics before saving or generating the request. Music generation does not require a microphone recording.</li>
@@ -71,13 +71,15 @@
             </article>
             <article class="policy">
               <h3>2. Where generation happens</h3>
-              <p>The app's voice-generation, song-cover and music-generation requests are processed by XM LLC-operated AI audio services. These generation flows do not send your audio or text to third-party AI model providers or call third-party AI model APIs. Processing takes place on our servers, not on your iPhone.</p>
+              <p>Audio rendering for voice generation, song covers and music generation is processed by XM LLC-operated AI audio services. These audio-rendering services do not send your audio or text to third-party AI model providers. Processing takes place on our servers, not on your iPhone.</p>
+              <p>The AI Creative Assistant is a separate text-planning feature: it sends the planning input described above to OpenAI after your agreement. You can review or edit its draft before requesting audio rendering. OpenAI processes this input under the terms and data controls applicable to our API service; more information is available in <a href="https://openai.com/enterprise-privacy/">OpenAI's business-data privacy commitments</a> and <a href="https://developers.openai.com/api/docs/guides/your-data">API data-control documentation</a>. We do not promise that provider records are immediately deleted when a request finishes.</p>
               <p>The app uses encrypted HTTPS connections to submit your requests to our services and retrieve results. Server processing and network delivery are necessary to provide the requested generation.</p>
               <p>This description of AI generation does not mean that all app-related activity stays within XM LLC. Apple provides App Store delivery, purchases and subscription systems. Links you choose to open, and destinations to which you export or share audio, operate under their own policies.</p>
             </article>
             <article class="policy">
               <h3>3. Identifiers and operational records</h3>
               <p>No app account sign-in is required. The app nevertheless uses identifiers to operate its features. It securely saves a random music-service installation identifier on your device. Our service associates music-generation jobs (including Rap) with a protected form of that identifier to control who may retrieve or cancel them. Reference-session and job identifiers associate submitted material with the requested work.</p>
+              <p>Creative Assistant requests use this installation-based access control. Our service saves request and project identifiers, planning state and provider session identifiers where available. Request and project identifiers are excluded from the planning input sent to OpenAI; selected voice and draft segment identifiers remain part of that input so the returned draft can refer to the selected voices and segments.</p>
               <p>Services receive connection information, including the connecting IP address, and maintain job status, timestamps, errors and diagnostic records. Membership requests use short-lived records derived from IP addresses for request limits. The music-generation service separately retains protected records derived from IP addresses and installation identifiers for abuse prevention; expired rate-limit records are removed during subsequent checks.</p>
               <p>These identifiers support job access, purchase handling, service operation and abuse prevention. The safeguards applied to identifiers do not make the associated content anonymous.</p>
             </article>
@@ -90,6 +92,7 @@
             <article class="policy">
               <h3>5. Storage and retention</h3>
               <p><strong>On your device:</strong> the app saves reference voices, imported audio, pending requests, generated results and creation history for its features. You can remove saved local items in the app. Local copies that you export or share must be managed at the destination you chose.</p>
+              <p><strong>Creative Assistant:</strong> draft projects and completed audio are saved on your device. Our planning service retains job records, including the submitted brief, draft plan, identifiers, status and error records, without an automatic expiry. These records remain until removed by the operator. Cancelling a planning job attempts to stop pending work, including provider work when a session is known; it does not delete existing job records or establish deletion of OpenAI's records.</p>
               <p><strong>Voice references and generated music:</strong> voice-reference files retained by the speech service and music request and output records, including Rap, currently have no automatic expiry. Music records can include lyrics for songs and Rap, style, generation mode and settings, job information associated with the installation identifier, generated audio and operational diagnostics. Instrumental requests are saved without lyric text. These server records remain until removed by the operator; they are not automatically erased when you finish listening or delete a local creation.</p>
               <p><strong>Song covers:</strong> the cover service periodically removes completed or failed job folders after its configured retention window. The default window is 24 hours after the job's last update, and the cleanup checks run every 30 minutes while the service is running. Queued or running jobs are not removed by that cleanup. Timing can be affected by service interruptions or cleanup errors, so this is not a guarantee of deletion exactly 24 hours after upload.</p>
               <p><strong>Other records:</strong> the song-cover job cleanup does not establish deletion of operational logs, membership revocation records or any backups. Membership revocation records currently have no automatic expiry. Contact us about the retention or deletion of server records using the process below.</p>
@@ -98,6 +101,7 @@
               <h3>6. Your choices and deletion requests</h3>
               <ul>
                 <li>You choose which text and files to submit. You can stop making generation requests at any time.</li>
+                <li>You can decline to enable the AI Creative Assistant by not selecting “Agree and create a draft.” The app remembers your agreement for later planning requests. To stop further sharing, stop creating or revising assistant drafts; existing voice and music tools remain available. Contact us using the process below to request deletion of previously submitted planning data or withdraw permission for further use.</li>
                 <li>You can deny or revoke microphone access in iOS Settings and use imported audio instead.</li>
                 <li>Deleting a voice sample or creation in the app removes that local item; it does not send a server-data deletion request.</li>
                 <li>Cancel job attempts to stop pending music-generation work, including Rap. It does not delete existing requests, audio or logs. Stop tracking clears the pending request from this app and may leave server generation running.</li>
@@ -117,12 +121,13 @@
       <section class="legal privacy-details" id="chinese" lang="zh-Hans" aria-labelledby="chinese-title">
         <div class="container">
           <h2 class="section-heading" id="chinese-title">隐私政策</h2>
-          <p class="policy-summary">Xsimple Audio Studio 由 XM LLC 提供。音频生成使用我们的服务器服务，需要联网。您无需注册 App 账号或自行配置 Mac。删除本地作品不会删除服务器上的副本。</p>
+          <p class="policy-summary">iOS 版 Xsimple Audio Studio 由 XM LLC 提供。音频生成使用我们的服务器服务，需要联网。如果您选择使用 AI 创作助手并同意其数据说明，文字规划会使用 OpenAI。您无需注册 iOS App 账号或自行配置 Mac。删除本地作品不会删除服务器上的副本。</p>
           <div class="policy-grid">
             <article class="policy">
               <h3>1. 您选择使用的音频和文字</h3>
               <p>点击录音时，App 会请求麦克风权限以录制参考声音。您也可以通过“文件”导入录音。保存的参考声音和作品保留在设备上，供重复使用、试听和导出。</p>
               <ul>
+                <li><strong>AI 创作助手：</strong>点击“同意并生成草稿”后，您的创作需求、文稿或现有草稿、创作设置、语言、所选音色名称与标识符，以及修改要求，会经由我们的服务发送给 OpenAI，用于生成或修改配音、音乐或声音剧场方案。发送给 OpenAI 的规划输入不包含参考录音、音频文件、本地文件路径、购买凭证或安装凭证。</li>
                 <li><strong>声音克隆与文字转语音：</strong>选定的参考录音、文字、语言及合成设置会发送到我们的语音服务，用于生成语音。</li>
                 <li><strong>歌曲翻唱：</strong>导入的歌曲、选定的参考声音和请求时长会发送到翻唱服务。处理过程会生成翻唱及相关音频，例如分离的人声与伴奏。</li>
                 <li><strong>音乐生成（歌词歌曲、Rap 与纯音乐）：</strong>所选生成模式、音乐风格、语言设置、节奏、时长、请求编号和生成种子会发送到音乐服务。歌词歌曲和 Rap 还会发送歌词，用于生成人声与音乐。纯音乐模式下，App 不发送歌词文字；服务也会在保存或生成请求前清空任何传入的歌词。音乐生成不要求录制麦克风音频。</li>
@@ -131,13 +136,15 @@
             </article>
             <article class="policy">
               <h3>2. 生成在哪里完成</h3>
-              <p>App 的语音生成、翻唱和音乐生成请求由 XM LLC 自营 AI 音频服务处理。这些生成流程不会将您的音频或文字发送给第三方 AI 模型提供商，也不调用第三方 AI 模型 API。处理在我们的服务器上完成，并非在您的 iPhone 本机上完成。</p>
+              <p>语音、翻唱和音乐的音频生成由 XM LLC 自营 AI 音频服务处理。这些音频生成服务不会将您的音频或文字发送给第三方 AI 模型提供商。处理在我们的服务器上完成，并非在您的 iPhone 本机上完成。</p>
+              <p>AI 创作助手属于单独的文字规划功能：在您同意后，它会将上述规划输入发送给 OpenAI。您可以先查看或修改草稿，再请求生成音频。OpenAI 按适用于我们所使用 API 服务的条款和数据控制措施处理输入；相关说明见 <a href="https://openai.com/enterprise-privacy/">OpenAI 企业数据隐私承诺</a>与 <a href="https://developers.openai.com/api/docs/guides/your-data">API 数据控制文档</a>。我们不承诺请求完成后提供商的记录立即删除。</p>
               <p>App 通过加密的 HTTPS 连接向我们的服务提交请求并获取结果。完成您请求的生成需要服务器处理和网络传输。</p>
               <p>上述 AI 生成说明不代表 App 的所有相关活动都仅由 XM LLC 完成。Apple 提供 App Store 分发、购买和订阅系统。您主动打开的链接，以及导出或分享音频的目标服务，适用各自的政策。</p>
             </article>
             <article class="policy">
               <h3>3. 标识符与运行记录</h3>
               <p>无需 App 账号登录，但 App 仍会使用标识符来提供功能。App 在设备上安全保存随机音乐服务安装标识。我们的服务使用经过保护的安装标识关联音乐生成任务（包括 Rap），以控制任务的获取和取消权限。参考声音会话编号和任务编号用于关联提交的素材与请求。</p>
+              <p>创作助手请求使用同一套基于安装标识的访问控制。我们的服务保存请求与项目标识、规划状态，以及可获取的提供商会话标识。发送给 OpenAI 的规划输入会排除请求与项目标识；所选音色和草稿片段标识仍属于输入的一部分，以便返回的草稿能够对应所选音色和片段。</p>
               <p>服务会接收包括连接 IP 地址在内的网络信息，并保存任务状态、时间戳、错误及诊断记录。会员请求会使用短时保存、由 IP 地址派生的记录来限制请求频率。音乐生成服务另外保留由 IP 地址和安装标识派生的受保护记录以防止滥用，并在后续检查时移除过期的限流记录。</p>
               <p>这些标识符用于任务访问、购买处理、服务运行和防止滥用。对标识符采取保护措施，并不代表相关内容已经匿名化。</p>
             </article>
@@ -150,6 +157,7 @@
             <article class="policy">
               <h3>5. 保存与保留时间</h3>
               <p><strong>设备本地：</strong>App 按功能需要保存参考声音、导入的音频、待处理请求、生成结果和作品记录。您可以在 App 内移除保存的本地项目。导出或分享的副本需在您选择的目标位置另行管理。</p>
+              <p><strong>创作助手：</strong>草稿项目和已完成音频保存在设备上。我们的规划服务保留任务记录，包括提交的需求、草稿方案、标识符、状态和错误记录，目前没有自动过期机制。这些记录会保留到运营者将其移除。取消规划任务会尝试停止待处理工作，在已知提供商会话时也会尝试取消提供商处理；取消不删除已有任务记录，也不代表 OpenAI 的记录已经删除。</p>
               <p><strong>参考声音和生成音乐：</strong>语音服务保留的参考声音文件，以及音乐请求和输出记录（包括 Rap），目前没有自动过期机制。音乐记录可能包含歌词歌曲及 Rap 的歌词、风格、生成模式与设置、关联安装标识的任务信息、生成音频和运行诊断记录。纯音乐请求保存时不包含歌词文字。这些服务器记录会保留到运营者将其移除；试听结束或删除本地作品不会自动清除这些记录。</p>
               <p><strong>歌曲翻唱：</strong>翻唱服务会定期清理超过所配置保留窗口、且已成功或失败的任务目录。默认窗口为任务最后更新时间起 24 小时；服务运行时，每 30 分钟检查一次。该清理不会移除排队中或运行中的任务。服务中断或清理错误可能影响实际时间，因此并非保证上传后整 24 小时即删除。</p>
               <p><strong>其他记录：</strong>翻唱任务清理不代表运行日志、会员撤销记录或任何备份也已删除。会员撤销记录目前没有自动过期机制。有关服务器记录的保留或删除，请按下述方式联系我们。</p>
@@ -158,6 +166,7 @@
               <h3>6. 您的选择与删除请求</h3>
               <ul>
                 <li>您自行选择提交的文字和文件，并可随时停止发起生成请求。</li>
+                <li>您可以不点击“同意并生成草稿”，以选择不开启 AI 创作助手。App 会记住您的同意，供后续规划请求使用。如需停止进一步分享，请停止生成或修改助手草稿；原有语音与音乐工具仍可使用。如需删除已提交的规划数据，或撤回对进一步使用的许可，请按下述方式联系我们。</li>
                 <li>您可以拒绝麦克风权限，或在 iOS 设置中撤销权限，并改用导入音频。</li>
                 <li>在 App 中删除声音样本或作品仅移除本地项目，不会提交服务器数据删除请求。</li>
                 <li>“取消任务”会尝试停止待处理的音乐生成工作（包括 Rap），不会删除已有的请求、音频或日志。“不再获取此任务”仅清除当前 App 中的待处理记录，服务器可能仍会继续生成。</li>
