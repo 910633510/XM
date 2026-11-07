@@ -33,7 +33,7 @@
           <p>
             This policy explains how XM LLC handles information for xsimple Life
             Goal, localized in mainland China as 人生小目标. The app is built
-            for private, on-device AI planning.
+            for offline goal planning, with optional on-device AI.
           </p>
           <div class="hero-actions">
             <a class="btn primary" href="#policy">Jump to Policy</a>
@@ -45,31 +45,30 @@
       <section class="legal privacy-details" id="policy">
         <div class="container">
           <p class="effective-date">
-            Effective: May 30, 2026
+            Effective: November 6, 2026
           </p>
           <div class="policy-grid">
             <article class="policy">
               <h3>Information Stored in the App</h3>
               <ul>
-                <li>Goal descriptions entered by the user.</li>
-                <li>Target dates, daily checklist items, completion state, and rescaled work.</li>
-                <li>Downloaded local model files needed for offline AI planning.</li>
+                <li>Goal descriptions, target dates, daily checklist items, and completion history are stored locally. Device backups may include this data depending on your backup settings.</li>
+                <li>Optional model files are stored on the device and excluded from device backups.</li>
               </ul>
             </article>
             <article class="policy">
               <h3>Local AI Processing</h3>
               <ul>
-                <li>AI planning is performed locally on the user's device after the model is downloaded.</li>
-                <li>Goal descriptions and generated plans are not submitted to third-party AI services.</li>
-                <li>XM LLC does not use user goal content to train third-party models.</li>
+                <li>The built-in planner and daily checklist work offline without a model download or an account.</li>
+                <li>If you choose to download a model, AI planning runs on your device. The app does not send goal descriptions, target dates, checklists, or generated plans to XM LLC or to an AI service.</li>
+                <li>XM LLC does not use your goal content to train AI models.</li>
               </ul>
             </article>
             <article class="policy">
               <h3>Network Use</h3>
               <ul>
-                <li>The app may download an open-source mobile language model from XM LLC-hosted infrastructure.</li>
-                <li>The download request may include standard network metadata such as IP address and user agent.</li>
-                <li>The app does not upload goal text, checklist activity, or generated plans to XM LLC servers.</li>
+                <li>Before an optional model download starts, the app shows the approximate download size and lets you continue without the model.</li>
+                <li>When you choose to download a model, the app retrieves the file over HTTPS from Hugging Face and its content delivery network. The request does not include goal content or require a Hugging Face account.</li>
+                <li>The download provider may log your IP address and standard request metadata to operate and protect its service. See the <a href="https://huggingface.co/privacy">Hugging Face Privacy Policy</a>.</li>
               </ul>
             </article>
             <article class="policy">
@@ -84,8 +83,15 @@
               <h3>Data Sharing</h3>
               <ul>
                 <li>XM LLC does not sell personal information from xsimple Life Goal.</li>
-                <li>XM LLC does not share goal content with third-party AI providers.</li>
-                <li>Information may be disclosed only when required by law or to protect the service and users.</li>
+                <li>The app does not use advertising or tracking SDKs.</li>
+                <li>XM LLC may disclose information it holds when required by law or to protect users or the service.</li>
+              </ul>
+            </article>
+            <article class="policy">
+              <h3>Retention and Choices</h3>
+              <ul>
+                <li>You can decline the model download and keep using the built-in planner. If you previously enabled AI, you can switch back to the built-in planner.</li>
+                <li>Removing the app deletes its local storage, including goals and model files. Manage any device backups separately in your device settings.</li>
               </ul>
             </article>
             <article class="policy">
@@ -93,7 +99,7 @@
               <p>
                 For privacy questions, data requests, or support, email
                 <a href="mailto:privacy@xm-llc.com">privacy@xm-llc.com</a> or
-                <a href="mailto:support@xm-llc.com">support@xm-llc.com</a>.
+                contact <a href="index.html#contact">XM LLC Support</a>.
               </p>
             </article>
           </div>
