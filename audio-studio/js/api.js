@@ -1,4 +1,4 @@
-import { t } from './i18n.js?v=20261030-6';
+import { t } from './i18n.js?v=20261117-1';
 
 export const API_BASE = 'https://api-voiceclone.xmaillc.com/web-studio/api';
 let csrfToken = null;
@@ -70,6 +70,9 @@ export function errorMessage(error) {
   else if (/asset_in_use/.test(lower)) message = t('A task is using this recording. Finish or cancel that task before deleting it.', '有任务正在使用此录音，请完成或取消任务后再删除。');
   else if (/storage|disk/.test(lower)) message = t('The service cannot safely save more audio right now. Keep your draft and contact support before retrying.', '服务目前无法安全保存更多音频，请保留草稿，联系支持后再试。');
   else if (/version|conflict|stale/.test(lower)) message = t('This project changed elsewhere. Reopen it before saving again; your unsaved draft is still shown here.', '项目已在其他位置更新。当前未保存内容仍显示在此，请重新打开项目后再保存。');
+  else if (/speech_text_empty/.test(lower)) message = t('Write the script you want this voice to read.', '请先填写要朗读的文稿。');
+  else if (/speech_text_too_long/.test(lower)) message = t('A voiceover can be up to 500 characters. Shorten the script or split it into parts.', '每段配音最多 500 字，请缩短文稿或分段生成。');
+  else if (/voice_required/.test(lower)) message = t('Choose a voice before generating.', '请先选择音色再生成。');
   else if (/mic_permission/.test(lower)) message = t('Microphone access was declined. Allow it in browser settings or upload an audio file instead.', '麦克风权限被拒绝。请在浏览器设置中允许录音，或改为上传音频文件。');
   else if (/mic_unsupported/.test(lower)) message = t('This browser cannot record audio. Upload a recording or open this page in a current browser.', '此浏览器无法录音，请上传已有录音，或使用较新的浏览器打开此页面。');
   else if (/connection|network|timeout|upstream_unavailable/.test(lower)) message = t('The connection was interrupted. Check your connection and retry; a submitted task may still be running.', '连接中断，请检查网络后重试；已提交的任务可能仍在运行。');

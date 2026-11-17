@@ -14,7 +14,7 @@ const context=vm.createContext({console,document:doc,navigator:{language:'en'},l
   request:async(path,options={})=>{requests.push({path,...options});if(path.includes('/jobs/'))return{id:'job-1',kind:'speech',status:'paused',progress:{stage:'paused'}};if(path==='/speech')return{id:'job-1',kind:'speech',status:'queued'};return{items:[]};},
 });context.window={addEventListener(){},scrollTo(){}};
 let source=fs.readFileSync(`${base}/js/app.js`,'utf8').replace(/^import .*;\n/gm,'').replaceAll('import.meta.url',JSON.stringify('https://www.xmaillc.com/audio-studio/js/app.js')).replace('initialize().catch(showError);','');
-source+='\nglobalThis.TEST={state,renderClone,renderVoices,renderCover,renderMusic,renderAssistant,renderCreations,renderAccount,renderJobs,requestID,validMusic,clearAccount,submitJob,refreshData,mergeCloudJobs,restoreJobHints,projectHasActiveJob,pollJob};';
+source+='\nglobalThis.TEST={state,releaseRequestID,voiceStillAvailable,projectNeedsMissingVoice,renderClone,renderVoices,renderCover,renderMusic,renderAssistant,renderCreations,renderAccount,renderJobs,requestID,validMusic,clearAccount,submitJob,refreshData,mergeCloudJobs,restoreJobHints,projectHasActiveJob,pollJob};';
 vm.runInContext(source,context);const T=context.TEST;
 const voices=JSON.parse(fs.readFileSync(`${base}/voices/catalog.json`)).items;
 T.state.catalog=voices;T.state.voices=[{id:'own',name:'Owned voice',language:'en',kind:'user'}];
@@ -105,3 +105,52 @@ vm.runInContext(apiSource,apiContext);const A=apiContext.API;A.setCSRFToken('csr
 assert.throws(()=>A.apiURL('https://example.invalid/file.wav'));A.onAuthExpired(()=>expired++);fetchResult={ok:false,status:401,json:async()=>({error_code:'session_expired'})};await assert.rejects(A.request('/voices'));assert.equal(expired,1);
 let complete;apiContext.fetch=()=>new Promise(resolve=>complete=resolve);const stale=A.request('/creations');A.setCSRFToken('csrf-b');complete({ok:true,status:200,json:async()=>({items:[{private:true}]})});await assert.rejects(stale,e=>e.code==='WEB_SESSION_CHANGED');
 console.log(`PASS: ${snapshots.length} bilingual/workflow HTML renders, 34 unique catalog IDs, XSS escaping, account draft isolation, idempotent submissions, music validation, variable duration, CSRF/cookie/auth-expiry/stale-response contracts.`);
+{
+  // Voiceover text limit, request-ID retention across retries, and voices deleted elsewhere.
+  context.request=originalRequest;lang='en';T.state.busy.clear();T.state.jobs.clear();
+  T.state.session={user:{id:'user-a',name:'Test Creator'},csrf_token:'test',entitlements:{speech:true,music:true,assistant:true,full_cover:true,cover_max_seconds:300}};
+  T.state.catalog=voices;T.state.voices=[{id:'own',name:'Owned voice',language:'en',kind:'user'}];T.state.voicesLoadedFor='user-a';T.state.requestIds={};
+  const speechPosts=()=>requests.filter(r=>r.path==='/speech'&&r.method==='POST');const notice=()=>doc.querySelector('#notice').textContent;
+  T.state.forms.clone={text:'a'.repeat(501),language:'en',voice_id:'own',speed:1,pitch:0,volume:1};
+  let before=speechPosts().length;await clickRenderedButton(T.renderClone(),'speech');
+  assert.equal(speechPosts().length,before,'an over-limit script is not sent');assert.match(notice(),/WEB_SPEECH_TEXT_TOO_LONG/,'over-limit scripts get their own message, not the vlog script one');
+  T.state.forms.clone.text='   ';await clickRenderedButton(T.renderClone(),'speech');assert.equal(speechPosts().length,before);assert.match(notice(),/WEB_SPEECH_TEXT_EMPTY/);
+  T.state.forms.clone.text='  '+'a'.repeat(500)+'\n';await clickRenderedButton(T.renderClone(),'speech');
+  assert.equal(speechPosts().length,before+1,'500 characters after trimming is accepted');assert.equal(speechPosts().at(-1).body.text,'a'.repeat(500),'the script is sent trimmed');
+  T.state.busy.clear();T.state.forms.clone={...T.state.forms.clone,text:'hello',voice_id:'deleted-elsewhere'};before=speechPosts().length;
+  await clickRenderedButton(T.renderClone(),'speech');
+  assert.equal(speechPosts().length,before,'a voice that no longer exists is not sent');assert.equal(T.state.forms.clone.voice_id,'');assert.match(notice(),/WEB_VOICE_UNAVAILABLE/);
+  T.state.voicesLoadedFor=null;assert(T.voiceStillAvailable('deleted-elsewhere'),'an unloaded voice list never blanks a choice');T.state.voicesLoadedFor='user-a';
+  T.state.requestIds={};const first=T.requestID('speech',{text:'A'});const second=T.requestID('speech',{text:'B'});
+  T.releaseRequestID({request_key:'speech',request_id:first});assert.equal(T.state.requestIds.speech?.id,second,'an older job finishing keeps the newer pending request ID');
+  T.releaseRequestID({request_key:'speech',request_id:second});assert.equal(T.state.requestIds.speech,undefined);
+  for(const [status,keeps] of [[422,false],[402,false],[0,true],[409,true],[503,true]]){
+    T.state.requestIds={};context.request=async(url,options={})=>{if(url==='/speech'&&options.method==='POST')throw new context.StudioError(status?'refused':'WEB_TIMEOUT',status);return originalRequest(url,options);};
+    await assert.rejects(T.submitJob('speech','/speech',{text:'retry me'}));
+    assert.equal(!!T.state.requestIds.speech,keeps,`HTTP ${status||'timeout'} ${keeps?'keeps':'frees'} the request ID`);
+  }
+  context.request=originalRequest;
+  console.log('PASS: voiceover limit (trimmed, 500) with its own messages, deleted voices cleared before submit, request IDs survive older jobs and timeouts but are freed after a 4xx refusal.');
+}
+{
+  // Review follow-ups: per-project request IDs, request_id_conflict, voice-list freshness, render voice check.
+  context.request=originalRequest;T.state.requestIds={};T.state.jobs.clear();T.state.busy.clear();
+  const sent=[];context.request=async(url,options={})=>{if(options.method==='POST'&&/^\/projects\//.test(url)){sent.push(options.body.request_id);return{id:`job-${sent.length}`,kind:'project_render',status:'queued'};}if(url==='/jobs')return{items:[]};if(url.startsWith('/jobs/'))return{id:url.split('/').pop(),kind:'project_render',status:'paused',progress:{stage:'paused'}};return originalRequest(url,options);};
+  await T.submitJob('project-render','/projects/p1/render',{version:2},{projectID:'p1'});
+  await T.submitJob('project-render','/projects/p2/render',{version:2},{projectID:'p2'});
+  assert.equal(sent.length,2);assert.notEqual(sent[0],sent[1],'two projects at the same version get different request IDs');
+  T.state.requestIds={};context.request=async(url,options={})=>{if(url==='/speech'&&options.method==='POST')throw new context.StudioError('request_id_conflict',409);return originalRequest(url,options);};
+  await assert.rejects(T.submitJob('speech','/speech',{text:'x'}));assert.equal(T.state.requestIds.speech,undefined,'request_id_conflict frees the ID');
+  T.state.requestIds={};context.request=async(url,options={})=>{if(url==='/speech'&&options.method==='POST')throw new context.StudioError('WEB_HTTP_409',409);return originalRequest(url,options);};
+  await assert.rejects(T.submitJob('speech','/speech',{text:'x'}));assert(T.state.requestIds.speech,'other 409s keep the ID');
+  T.state.voicesLoadedFor='user-a';context.request=async(url,options={})=>{if(url==='/voices')throw new context.StudioError('WEB_TIMEOUT',0);return originalRequest(url,options);};
+  await T.refreshData();assert.equal(T.state.voicesLoadedFor,null,'a failed voice refresh stops trusting the old list');assert(T.voiceStillAvailable('just-saved'));
+  context.request=originalRequest;T.state.voicesLoadedFor='user-a';T.state.voices=[{id:'own',name:'Owned voice',language:'en',kind:'user'}];
+  const plan={roles:[{id:'r1',voice_id:'deleted-voice'},{id:'r2',voice_id:voices[0].id},{id:'r3',voice_id:'deleted-voice'}],segments:[{id:'s1',role_id:'r1'},{id:'s2',role_id:'r2'}]};
+  assert.equal(T.projectNeedsMissingVoice({plan,completed_segment_ids:['s1']}),false,'finished or empty roles with a deleted voice do not block');
+  assert.equal(T.projectNeedsMissingVoice({plan,completed_segment_ids:[]}),true,'a pending part with a deleted voice blocks');
+  T.state.forms.clone={text:' padded \n',language:'en',voice_id:'own',speed:1,pitch:0,volume:1};T.state.requestIds={speech:{id:'legacy-id',signature:JSON.stringify(T.state.forms.clone)}};
+  const posts=requests.filter(r=>r.path==='/speech'&&r.method==='POST').length;await clickRenderedButton(T.renderClone(),'speech');
+  const legacy=requests.filter(r=>r.path==='/speech'&&r.method==='POST');assert.equal(legacy.length,posts+1);assert.equal(legacy.at(-1).body.request_id,'legacy-id','a retry saved by the previous release keeps its ID and payload');
+  console.log('PASS: per-project plan/render request IDs, request_id_conflict frees the ID, failed voice refresh is not trusted, render checks only pending roles, previous-release retries keep their ID.');
+}

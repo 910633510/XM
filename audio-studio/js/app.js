@@ -1,6 +1,6 @@
-import { request, setCSRFToken, onAuthExpired, errorMessage, StudioError, API_BASE } from './api.js?v=20261030-6';
-import { t, getLanguage, setLanguage, dateLabel, durationLabel } from './i18n.js?v=20261030-6';
-import { setDraftOwner, readDrafts, saveDrafts } from './storage.js?v=20261030-6';
+import { request, setCSRFToken, onAuthExpired, errorMessage, StudioError, API_BASE } from './api.js?v=20261117-1';
+import { t, getLanguage, setLanguage, dateLabel, durationLabel } from './i18n.js?v=20261117-1';
+import { setDraftOwner, readDrafts, saveDrafts } from './storage.js?v=20261117-1';
 
 const $ = (selector, root = document) => root.querySelector(selector);
 const esc = (value = '') => String(value ?? '').replace(/[&<>"']/g, c => ({ '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;' }[c]));
@@ -8,6 +8,8 @@ const uid = () => crypto.randomUUID();
 const items = value => Array.isArray(value) ? value : value?.items || [];
 const routes = ['clone', 'voices', 'cover', 'music', 'assistant', 'creations', 'account'];
 const activeStatuses = new Set(['queued', 'running', 'paused']);
+// Same per-request cap as the iOS app's Pro tier; the textarea, its counter and the submit check all use it.
+const SPEECH_MAX_CHARS = 500;
 const navNames = () => ({ clone:t('Voice clone','声音克隆'), voices:t('AI voices','AI 声库'), cover:t('Song cover','歌曲翻唱'), music:t('Music studio','音乐创作'), assistant:t('Creative assistant','创作助手'), creations:t('Creations','我的作品'), account:t('Account','账户') });
 const modeName = mode => ({ narration:t('Voiceover','一句话配音'), music:t('Music','音乐创作'), dialogue:t('Audio scene','多角色小剧场') }[mode] || mode);
 const musicName = mode => ({ song:t('Song','歌曲'), rap:t('Rap','说唱'), instrumental:t('Instrumental','纯音乐') }[mode] || mode);
@@ -23,7 +25,7 @@ const state = { route:routes.includes(location.hash.slice(1)) ? location.hash.sl
   session:{user:null,entitlements:{}}, catalog:[], voices:[], creations:[], projects:[], prices:[], jobs:new Map(), timers:new Map(), polling:new Set(), dismissedJobs:new Set(),
   forms:emptyForms(), currentProject:null, projectDirty:false, selected:[], voiceFilter:'all', voiceSearch:'', creationFilter:'all',
   coverFile:null, voiceFile:null, voiceName:'', voiceLanguage:getLanguage(), voiceConsent:false, recorder:null, recording:false, recordingStart:0,
-  busy:new Set(), requestIds:{}, returnRoute:null, audioObjectURL:null, noticeTimer:null, googlePromise:null, googleGeneration:0,
+  busy:new Set(), requestIds:{}, voicesLoadedFor:null, returnRoute:null, audioObjectURL:null, noticeTimer:null, googlePromise:null, googleGeneration:0,
 };
 let draftTimer;
 const workspace = $('#workspace');
@@ -68,14 +70,14 @@ function saveLocal() {
   draftTimer=setTimeout(()=>{
     const ok=saveDrafts({ forms:state.forms, projectDraft:state.projectDirty?state.currentProject:null,
       selectedProjectID:state.currentProject?.id || null, requestIds:state.requestIds,
-      jobs:[...state.jobs.values()].filter(j=>activeStatuses.has(j.status)).map(j=>({id:j.id,kind:j.kind,request_key:j.request_key,project_id:j.project_id})) });
+      jobs:[...state.jobs.values()].filter(j=>activeStatuses.has(j.status)).map(j=>({id:j.id,kind:j.kind,request_key:j.request_key,project_id:j.project_id,request_id:j.request_id})) });
     if (!ok) notify(t('Your browser could not save the draft. Copy important text before leaving. (WEB_LOCAL_STORAGE)','浏览器无法保存草稿，离开前请复制重要文字。（WEB_LOCAL_STORAGE）'),true);
   },180);
 }
 function flushLocal() {
   clearTimeout(draftTimer);
   return saveDrafts({forms:state.forms,projectDraft:state.projectDirty?state.currentProject:null,selectedProjectID:state.currentProject?.id||null,
-    requestIds:state.requestIds,jobs:[...state.jobs.values()].filter(j=>activeStatuses.has(j.status)).map(j=>({id:j.id,kind:j.kind,request_key:j.request_key,project_id:j.project_id}))});
+    requestIds:state.requestIds,jobs:[...state.jobs.values()].filter(j=>activeStatuses.has(j.status)).map(j=>({id:j.id,kind:j.kind,request_key:j.request_key,project_id:j.project_id,request_id:j.request_id}))});
 }
 function restoreLocal() {
   const saved=readDrafts(); state.forms=emptyForms(); state.currentProject=null; state.projectDirty=false; state.requestIds={};
@@ -105,6 +107,34 @@ function requireAccess(feature) {
   if (state.session.entitlements?.[feature])return true;
   state.returnRoute=state.route; navigate('account'); notify(t('Check your membership access before creating.','请先查看账户会员权限。')); return false;
 }
+// A finished job frees its request ID only if that ID is still the one held for the key:
+// a newer submission of the same kind (say, one whose POST timed out) keeps its ID, so retrying it
+// cannot start and charge a second job.
+function releaseRequestID(job) {
+  if(!job?.request_key)return;
+  const held=state.requestIds[job.request_key];
+  if(!job.request_id||held?.id===job.request_id)delete state.requestIds[job.request_key];
+}
+// A saved voice can disappear (deleted here or on another device). Only judge once this account's
+// voice list and the public catalog have both loaded, so a failed refresh never blanks a choice.
+function voiceStillAvailable(id) {
+  if(!id||id==='original')return true;
+  if(allVoices().some(v=>v.id===id))return true;
+  return !(state.voicesLoadedFor&&state.voicesLoadedFor===currentUserID()&&state.catalog.length);
+}
+// Render only voices parts that have no audio yet, so a deleted voice matters only for those parts' roles.
+function projectNeedsMissingVoice(project) {
+  const plan=project?.plan;if(!plan)return false;
+  const done=new Set(project.completed_segment_ids||[]);
+  const pending=new Set((plan.segments||[]).filter(s=>!done.has(s.id)).map(s=>s.role_id));
+  return (plan.roles||[]).some(role=>pending.has(role.id)&&!voiceStillAvailable(role.voice_id));
+}
+function requireAvailableVoice(form,fallback='') {
+  const id=state.forms[form]?.voice_id;
+  if(voiceStillAvailable(id))return;
+  state.forms[form].voice_id=fallback;saveLocal();
+  throw new StudioError('WEB_VOICE_UNAVAILABLE');
+}
 function requestID(key,payload) {
   const signature=JSON.stringify(payload); const old=state.requestIds[key];
   if(old?.signature===signature)return old.id;
@@ -128,7 +158,7 @@ function renderClone() {
   const form=state.forms.clone; const voice=allVoices().find(v=>v.id===form.voice_id);
   return pageHeading(t('Your words, your voice.','把文字变成你的声音。'),t('Choose a reference, write a few lines, and create a voiceover.','选择参考声音，写下文稿，生成属于你的配音。'))+
   `<div class="editor-grid"><div>${panel(t('Write your script','填写文稿'),
-    formField('clone','text',t('Script','文稿'),{rows:9,limit:500,placeholder:t('Write what you would like your voice to say…','写下你希望这个声音说的话…')})+
+    formField('clone','text',t('Script','文稿'),{rows:9,limit:SPEECH_MAX_CHARS,placeholder:t('Write what you would like your voice to say…','写下你希望这个声音说的话…')})+
     `<div class="form-row">${formField('clone','language',t('Spoken language','朗读语言'),{choices:[['en','English'],['zh','中文']]})}</div>`+
     `<details class="settings"><summary>${t('Voice settings','声音参数')}</summary><div class="three-columns">${formField('clone','speed',t('Speed','语速'),{type:'number',min:.5,max:1.5,step:.05})}${formField('clone','pitch',t('Pitch · semitones','音高 · 半音'),{type:'number',min:-12,max:12,step:1})}${formField('clone','volume',t('Volume','音量'),{type:'number',min:.5,max:1.5,step:.05})}</div></details>`+
     permissionNote('speech')+`<div class="panel-actions">${button('speech',busy('speech')?t('Submitting…','正在提交…'):t('Generate voiceover','生成配音'),{tone:'primary',isDisabled:busy('speech')})}</div>`)}${localNote()}</div><div>${panel(t('Choose a voice','选择声音'),
@@ -255,7 +285,7 @@ function mergeCloudJobs(jobs,owner) {
     const old=state.jobs.get(incoming.id)||{};
     const job={...old,...incoming,project_id:incoming.project_id||incoming.result?.project_id||old.project_id};
     delete job.local_hint;delete job.connection_error;state.jobs.set(job.id,job);
-    if(!activeStatuses.has(job.status)&&job.request_key)delete state.requestIds[job.request_key];
+    if(!activeStatuses.has(job.status))releaseRequestID(job);
   }
   // The account's list is authoritative. Local hints only recover older IDs omitted
   // from that bounded recent list; they never replace server status or project IDs.
@@ -271,7 +301,7 @@ async function refreshData({replaceProject=false}={}) {
   const owner=currentUserID();
   const results=await Promise.allSettled([request('/voices'),request('/creations'),request('/projects'),request('/jobs')]);
   if(currentUserID()!==owner)return;
-  const keys=['voices','creations','projects'];results.forEach((r,i)=>{if(r.status==='fulfilled'){if(i===3)mergeCloudJobs(items(r.value),owner);else state[keys[i]]=items(r.value);}else if(r.reason.status!==401)showError(r.reason);});
+  const keys=['voices','creations','projects'];results.forEach((r,i)=>{if(r.status==='fulfilled'){if(i===3)mergeCloudJobs(items(r.value),owner);else state[keys[i]]=items(r.value);if(i===0)state.voicesLoadedFor=owner;}else{if(i===0)state.voicesLoadedFor=null;if(r.reason.status!==401)showError(r.reason);}});
   const selectedID=state.currentProject?.id||state.selectedProjectID;
   if(selectedID&&(!state.projectDirty||replaceProject)) {state.currentProject=state.projects.find(p=>p.id===selectedID)||null;state.projectDirty=false;}
   state.selected=state.selected.filter(id=>state.creations.some(c=>c.id===id));
@@ -307,7 +337,7 @@ async function initialize() {
 }
 function clearAccount() {
   flushLocal();state.googleGeneration++;for(const timer of state.timers.values())clearTimeout(timer);state.timers.clear();state.polling.clear();state.dismissedJobs.clear();
-  state.session={user:null,entitlements:{}};setCSRFToken(null);state.voices=[];state.creations=[];state.projects=[];state.jobs.clear();state.selected=[];
+  state.session={user:null,entitlements:{}};setCSRFToken(null);state.voices=[];state.voicesLoadedFor=null;state.creations=[];state.projects=[];state.jobs.clear();state.selected=[];
   state.coverFile=null;state.voiceFile=null;state.voiceConsent=false;state.busy.clear();stopPlayer();closeVoiceDialog();
   setDraftOwner(null);restoreLocal();state.currentProject=null;state.projectDirty=false;
 }
@@ -348,11 +378,21 @@ async function submitJob(key,path,payload,{formData=null,projectID=null}={}) {
     if(!await syncCloudJobs())return null;
     if(projectHasActiveJob(projectID))throw new StudioError('project_job_active');
   }
-  const id=requestID(key,payload);let body;
+  // Plan/render payloads carry only a version, so two projects at the same version must not share an ID.
+  const id=requestID(key,projectID?{...payload,project_id:projectID}:payload);let body;
   if(formData){formData.set('request_id',id);body=formData;}else body={...payload,request_id:id};
-  const response=await request(path,{method:'POST',body});const job=response?.job||response;
+  let response;
+  try{response=await request(path,{method:'POST',body});}
+  catch(error){
+    // A 4xx means the server refused and started nothing: a retry should get a fresh ID.
+    // Timeouts, conflicts, rate limits and 5xx keep the ID, since the job may exist and must not be started twice.
+    // request_id_conflict means the server already holds a different job under this ID, so it can never succeed.
+    if(((error?.status>=400&&error.status<500&&![408,409,425,429].includes(error.status))||error?.code==='request_id_conflict')&&state.requestIds[key]?.id===id){delete state.requestIds[key];flushLocal();}
+    throw error;
+  }
+  const job=response?.job||response;
   if(!job?.id)throw new StudioError('WEB_INVALID_JOB');
-  job.request_key=key;if(projectID)job.project_id=projectID;state.jobs.set(job.id,job);flushLocal();renderJobs();pollJob(job.id);
+  job.request_key=key;job.request_id=id;if(projectID)job.project_id=projectID;state.jobs.set(job.id,job);flushLocal();renderJobs();pollJob(job.id);
   notify(t('Task started. You can keep working while it runs.','任务已提交，等待期间可以继续使用其他工具。'));return job;
 }
 async function pollJob(id) {
@@ -367,12 +407,12 @@ async function pollJob(id) {
     if(['queued','running'].includes(job.status)){state.timers.set(id,setTimeout(()=>pollJob(id),1800));return;}
     state.timers.delete(id);
     if(!activeStatuses.has(job.status)) {
-      if(job.request_key)delete state.requestIds[job.request_key];
+      releaseRequestID(job);
       await refreshData({replaceProject:!!job.project_id&&state.currentProject?.id===job.project_id&&!state.projectDirty});
       if(currentUserID()!==owner)return;
       render();if(job.status==='succeeded')notify(t('Your creation is ready.','创作已完成。'));else if(job.status==='failed')showError(new StudioError(job.error_code||'WEB_GENERATION_FAILED'));
     }
-  }catch(error){if(currentUserID()!==owner)return;if(error.status===404){state.jobs.delete(id);renderJobs();showError(error);}else if(error.status!==401){const job=state.jobs.get(id);if(job)job.connection_error=error.code||'WEB_CONNECTION';renderJobs();state.timers.set(id,setTimeout(()=>pollJob(id),6000));}}
+  }catch(error){if(currentUserID()!==owner)return;if(error.status===404){releaseRequestID(state.jobs.get(id));state.jobs.delete(id);renderJobs();showError(error);}else if(error.status!==401){const job=state.jobs.get(id);if(job)job.connection_error=error.code||'WEB_CONNECTION';renderJobs();state.timers.set(id,setTimeout(()=>pollJob(id),6000));}}
   finally{state.polling.delete(pollKey);}
 }
 
@@ -423,7 +463,7 @@ async function planProject(revision=false) {
   const project=await saveProject();if(!project)return;
   await submitJob('project-plan',`/projects/${encodeURIComponent(project.id)}/plan`,{prompt,target_segment_id:revision?form.target||null:null,version:project.version},{projectID:project.id});
 }
-async function renderProject(){if(!requireUser())return;const project=await saveProject();if(!project?.plan)throw new StudioError('WEB_INVALID_PLAN');if(!requireAccess(project.mode==='music'?'music':'speech'))return;await submitJob('project-render',`/projects/${encodeURIComponent(project.id)}/render`,{version:project.version}, {projectID:project.id});}
+async function renderProject(){if(!requireUser())return;if(projectNeedsMissingVoice(state.currentProject))throw new StudioError('WEB_VOICE_UNAVAILABLE');const project=await saveProject();if(!project?.plan)throw new StudioError('WEB_INVALID_PLAN');if(!requireAccess(project.mode==='music'?'music':'speech'))return;await submitJob('project-render',`/projects/${encodeURIComponent(project.id)}/render`,{version:project.version}, {projectID:project.id});}
 function chooseProject(id){if(state.projectDirty&&!confirm(t('Discard unsaved edits and open another project?','放弃当前未保存修改并打开其他项目？')))return;state.currentProject=state.projects.find(p=>p.id===id)||null;state.selectedProjectID=id||null;state.projectDirty=false;state.forms.assistant.revision='';state.forms.assistant.target='';saveLocal();render();}
 function newProject(mode=state.forms.assistant.mode){if(state.projectDirty&&!confirm(t('Keep the saved project and discard these unsaved edits?','保留已保存的项目，并放弃当前未保存修改？')))return;state.currentProject=null;state.selectedProjectID=null;state.projectDirty=false;state.forms.assistant={...state.forms.assistant,mode,title:'',prompt:'',revision:'',target:''};saveLocal();render();}
 
@@ -463,12 +503,12 @@ document.addEventListener('click',event=>{
   };
   if(immediate[action]){immediate[action]();return;}
   const handlers={
-    speech:async()=>{if(!requireAccess('speech'))return;const f=state.forms.clone;if(!f.text.trim()||f.text.length>500||!f.voice_id)throw new StudioError('WEB_INVALID_SCRIPT');await submitJob('speech','/speech',f);},
+    speech:async()=>{if(!requireAccess('speech'))return;const f=state.forms.clone;const text=f.text.trim();if(!text)throw new StudioError('WEB_SPEECH_TEXT_EMPTY');if(text.length>SPEECH_MAX_CHARS)throw new StudioError('WEB_SPEECH_TEXT_TOO_LONG');if(!f.voice_id)throw new StudioError('WEB_VOICE_REQUIRED');requireAvailableVoice('clone');const legacyRetry=state.requestIds.speech?.signature===JSON.stringify(f);await submitJob('speech','/speech',legacyRetry?f:{...f,text});},
     'generate-music':async()=>{if(!requireAccess('music'))return;const f=state.forms.music;if(!validMusic(f))throw new StudioError('WEB_INVALID_MUSIC');await submitJob('music','/music',{...f,lyrics:f.generation_mode==='instrumental'?'':f.lyrics});},
-    'generate-cover':async()=>{if(!requireUser())return;const f=state.forms.cover;if(!state.coverFile||!f.voice_id||Number(f.seconds)<5)throw new StudioError('WEB_INVALID_COVER');if(Number(f.seconds)>Number(state.session.entitlements?.cover_max_seconds||30)){navigate('account');return;}const data=new FormData();data.set('song',state.coverFile);data.set('voice_id',f.voice_id);data.set('seconds',f.seconds);await submitJob('cover','/covers',{...f,file:[state.coverFile.name,state.coverFile.size,state.coverFile.lastModified]},{formData:data});},
+    'generate-cover':async()=>{if(!requireUser())return;const f=state.forms.cover;if(!state.coverFile||!f.voice_id||Number(f.seconds)<5)throw new StudioError('WEB_INVALID_COVER');const maxSeconds=Number(state.session.entitlements?.cover_max_seconds||30);if(Number(f.seconds)>maxSeconds){notify(t(`Your account supports covers up to ${maxSeconds} seconds. Shorten the cover or check your membership.`,`当前账号翻唱最长 ${maxSeconds} 秒，请缩短时长或查看会员权限。`),true);navigate('account');return;}requireAvailableVoice('cover');const data=new FormData();data.set('song',state.coverFile);data.set('voice_id',f.voice_id);data.set('seconds',f.seconds);await submitJob('cover','/covers',{...f,file:[state.coverFile.name,state.coverFile.size,state.coverFile.lastModified]},{formData:data});},
     'preview-voice':()=>previewVoice(id),'start-recording':startRecording,
     'preview-upload':async()=>{if(!state.voiceFile)return;const url=URL.createObjectURL(state.voiceFile);if(state.audioObjectURL)URL.revokeObjectURL(state.audioObjectURL);state.audioObjectURL=url;const player=$('#player');player.src=url;$('#player-title').textContent=state.voiceName||state.voiceFile.name;$('#player-detail').textContent=t('Local recording','本地录音');$('#audio-player').hidden=false;document.body.classList.add('has-player');try{await player.play();}catch{}},
-    'upload-voice':async()=>{if(!requireUser())return;if(!state.voiceFile||!state.voiceName.trim())throw new StudioError('WEB_INVALID_VOICE');if(!state.voiceConsent)throw new StudioError('WEB_VOICE_CONSENT');const data=new FormData();data.set('file',state.voiceFile);data.set('name',state.voiceName.trim());data.set('consent','true');data.set('language',state.voiceLanguage);const result=await request('/voices',{method:'POST',body:data});const voice=result.voice||result;await refreshData();if(voice.id){state.forms.clone.voice_id=voice.id;state.forms.cover.voice_id=voice.id;}state.voiceFile=null;state.voiceName='';state.voiceConsent=false;closeVoiceDialog();saveLocal();notify(t('Your voice has been saved to your account.','声音已保存到账号。'));},
+    'upload-voice':async()=>{if(!requireUser())return;if(!state.voiceFile||!state.voiceName.trim())throw new StudioError('WEB_INVALID_VOICE');if(!state.voiceConsent)throw new StudioError('WEB_VOICE_CONSENT');const data=new FormData();data.set('file',state.voiceFile);data.set('name',state.voiceName.trim());data.set('consent','true');data.set('language',state.voiceLanguage);const result=await request('/voices',{method:'POST',body:data});const voice=result.voice||result;await refreshData();if(voice.id&&!state.voices.some(v=>v.id===voice.id))state.voices=[...state.voices,voice];if(voice.id){state.forms.clone.voice_id=voice.id;state.forms.cover.voice_id=voice.id;}state.voiceFile=null;state.voiceName='';state.voiceConsent=false;closeVoiceDialog();saveLocal();notify(t('Your voice has been saved to your account.','声音已保存到账号。'));},
     'delete-voice':async()=>{if(!confirm(t('Delete this saved voice? Existing creations stay in your library.','删除这个已保存的声音？已生成作品会保留。')))return;await request(`/voices/${encodeURIComponent(id)}`,{method:'DELETE'});await refreshData();if(state.forms.clone.voice_id===id)state.forms.clone.voice_id='';if(state.forms.cover.voice_id===id)state.forms.cover.voice_id='';saveLocal();},
     'save-project':saveProject,'plan-project':()=>planProject(false),'revise-project':()=>planProject(true),'render-project':renderProject,
     'delete-project':async()=>{if(!confirm(t('Delete this project and its working parts?','删除这个项目及其工作片段？')))return;await request(`/projects/${encodeURIComponent(id)}`,{method:'DELETE'});state.currentProject=null;state.projectDirty=false;state.selectedProjectID=null;await refreshData();saveLocal();},
