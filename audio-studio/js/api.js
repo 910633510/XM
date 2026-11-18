@@ -1,4 +1,4 @@
-import { t } from './i18n.js?v=20261117-1';
+import { t } from './i18n.js?v=20261117-2';
 
 export const API_BASE = 'https://api-voiceclone.xmaillc.com/web-studio/api';
 let csrfToken = null;
@@ -73,6 +73,29 @@ export function errorMessage(error) {
   else if (/speech_text_empty/.test(lower)) message = t('Write the script you want this voice to read.', '请先填写要朗读的文稿。');
   else if (/speech_text_too_long/.test(lower)) message = t('A voiceover can be up to 500 characters. Shorten the script or split it into parts.', '每段配音最多 500 字，请缩短文稿或分段生成。');
   else if (/voice_required/.test(lower)) message = t('Choose a voice before generating.', '请先选择音色再生成。');
+  else if (/video_too_long/.test(lower)) message = t('This video is longer than the 10-minute dubbing limit. Trim it and upload the part you need.', '视频超过配音的 10 分钟上限，请剪短后上传需要的部分。');
+  else if (/video_too_large/.test(lower)) message = t('This video is larger than 300 MB. Export a smaller file and try again.', '视频超过 300 MB，请导出较小的文件后重试。');
+  else if (/video_audio_missing|dub_no_speech/.test(lower)) message = t('No speech was found in this video. Dubbing needs a soundtrack with clear spoken words.', '视频中没有检测到人声。配音需要包含清晰讲话的音轨。');
+  else if (/dub_too_many_segments/.test(lower)) message = t('This video has too many spoken lines for one dubbing task. Split it into shorter parts.', '这段视频的台词太多，请拆成更短的片段分别配音。');
+  else if (/video_consent/.test(lower)) message = t('Confirm that you have the rights to this video before starting the dub.', '开始配音前，请先确认你拥有此视频的使用权利。');
+  else if (/invalid_dub/.test(lower)) message = t('Choose a video, a voice and a target language before starting the dub.', '请先选择视频、音色和配音语言。');
+  else if (/invalid_vlog_style/.test(lower)) message = t('Describe the style you want, or pick one of the presets.', '请描述你想要的风格，或选择一个预设。');
+  else if (/invalid_vlog/.test(lower)) message = t('Choose a video file before writing the narration.', '请先选择视频文件，再开始写旁白。');
+  else if (/invalid_script|vlog_script_empty/.test(lower)) message = t('The script needs at least one line with text and a sensible time window.', '脚本至少需要一句有文字、时间合理的台词。');
+  else if (/vlog_no_room/.test(lower)) message = t('People are talking through almost all of this video, so there is no room for a voice-over. Try footage with quieter stretches.', '这段视频几乎全程都有人说话，没有地方放旁白。可以换一段有空隙的素材。');
+  else if (/vlog_script_ungrounded/.test(lower)) message = t('None of the narration could be matched to what the footage shows, so nothing was voiced. Add a brief that explains the video, or pick its type, and write it again.', '没有一句旁白能和画面内容对上，所以没有配音。请补充一句视频说明或手动指定类型后重新生成。');
+  else if (/vlog_script_required/.test(lower)) message = t('Write the script first, then create the video.', '请先生成脚本，再生成视频。');
+  else if (/vlog_script_changed|script_version/.test(lower)) message = t('This script changed elsewhere. Reopen the vlog and try again.', '脚本已在其他位置更新，请重新打开这条 vlog 后再试。');
+  else if (/vlog_job_active/.test(lower)) message = t('A task is working on this vlog. Wait for it or cancel it before editing the script.', '当前有任务正在处理这条 vlog，请等待完成或取消后再修改脚本。');
+  else if (/vlog_frames|vlog_no_frames/.test(lower)) message = t('The footage could not be sampled. Try a shorter or re-exported video.', '无法从素材中截取画面，请尝试更短或重新导出的视频。');
+  else if (/vlog_writer_not_configured|vlog_writer_auth|narrator_not_configured|narrator_auth/.test(lower)) message = t('AI narration is not available on the service right now. Your footage is kept; try later or contact support.', 'AI 旁白服务当前不可用，素材已保留，请稍后重试或联系支持。');
+  else if (/vlog_writer|vlog_script_invalid/.test(lower)) message = t('The script could not be written this time. Use Continue on the task or write it again.', '这次没能写出脚本，可在任务中点击“继续”或重新生成。');
+  else if (/narrator/.test(lower)) message = t('The narrator voice did not finish. Use Continue on the task to retry without re-voicing finished lines.', '旁白配音未完成，可在任务中点击“继续”重试，已完成的句子不会重做。');
+  else if (/video_format|video_invalid|video_required|video_encode|dub_alignment/.test(lower)) message = t('This video could not be processed. Use an MP4, MOV, WebM or MKV file with sound and try again.', '无法处理该视频，请使用含声音的 MP4、MOV、WebM 或 MKV 文件后重试。');
+  else if (/transcription_unavailable/.test(lower)) message = t('Speech recognition is not available on the service right now. Keep your video and try again later or contact support.', '语音识别服务当前不可用，请保留视频，稍后重试或联系支持。');
+  else if (/transcription/.test(lower)) message = t('The speech in this video could not be recognized. Try a clearer recording or a shorter clip.', '无法识别视频中的语音，请尝试更清晰的录音或更短的片段。');
+  else if (/translation_not_configured|translation_auth/.test(lower)) message = t('Translation is not available on the service right now. Choose the same language to re-voice without translating, or try later.', '翻译服务当前不可用。可选择与原语言相同的配音语言仅换声，或稍后重试。');
+  else if (/translation/.test(lower)) message = t('Translation did not complete. Use Continue on the task to retry without re-processing the video.', '翻译未完成。可在任务中点击“继续”重试，无需重新处理视频。');
   else if (/mic_permission/.test(lower)) message = t('Microphone access was declined. Allow it in browser settings or upload an audio file instead.', '麦克风权限被拒绝。请在浏览器设置中允许录音，或改为上传音频文件。');
   else if (/mic_unsupported/.test(lower)) message = t('This browser cannot record audio. Upload a recording or open this page in a current browser.', '此浏览器无法录音，请上传已有录音，或使用较新的浏览器打开此页面。');
   else if (/connection|network|timeout|upstream_unavailable/.test(lower)) message = t('The connection was interrupted. Check your connection and retry; a submitted task may still be running.', '连接中断，请检查网络后重试；已提交的任务可能仍在运行。');
